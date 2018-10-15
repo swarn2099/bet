@@ -68,7 +68,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     var name = document.getElementById('name');
-    var phone = document.getElementsByClassName('mdl-textfield__input firebaseui-input firebaseui-id-phone-number');
+    var phone = document.getElementsByClassName('firebaseui-input');
     var docRef = db.collection("users").doc(name.value);
 
     docRef.get().then(function(doc) {
