@@ -243,49 +243,18 @@ firebase.auth().onAuthStateChanged(function(user) {
           .then(function() {
             console.log("Document successfully written!");
           })
-          .catch(function(error) {
-            console.error("Error writing document: ", error);
-          });
         } else {
             // doc.data() will be undefined in this case
-            console.log("No such document!");
+            console.log("User already exsists...redirecting to invite page");
         }
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
-    window.open('https://swarn2099.github.io');
   } else {
     // No user is signed in.
   }
 });
-  function createUser() {
-    var name = document.getElementById("name");
-    var phone = document.getElementById("phone");
-    var emailCreate = document.getElementById("email").value;
-    var passwordCreate = document.getElementById('password').value;
-    firebase.auth().createUserWithEmailAndPassword(emailCreate, passwordCreate).then(function(user) {
-      M.toast({
-        html: "You're all set",
-        classes: 'rounded teal white-text'
-      });
-      db.collection("users").doc(name.value).set({
-          name: name.value,
-          phoneNumber: phone.value,
-          invited: false,
-          invtiedBy: " ",
-          inviteOne: " ",
-          inviteTwo: " ",
-      })
-        .then(function() {
-            console.log("Document successfully written!");
-        })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
-        });
-    }).catch(function(error) {
-      console.log(error);
-    });
-  };
+
 </script>
 <script>
   // Set the date we're counting down to
