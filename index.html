@@ -79,7 +79,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             // doc.data() will be undefined in this case
             db.collection("users").doc(name.value).set({
               name: name.value,
-              phone: phone,
+              phone: phone.value,
               invited: false,
               invitedBy: " ",
               invite1: " ",
