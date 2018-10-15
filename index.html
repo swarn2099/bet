@@ -229,28 +229,30 @@ ui.start('#firebaseui-auth-container', uiConfig);
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
-    var docRef = db.collection("users").doc(user.uid);
     var name = document.getElementById('name');
     var phone = document.getElementsByClassName('mdl-textfield__input firebaseui-input firebaseui-id-phone-number');
+    var docRef = db.collection("users").doc(phone.value);
+
     docRef.get().then(function(doc) {
         if (!doc.exists) {
-          db.collection("users").doc(phone.value).set({
-            ame: name.value,
-            phone: phone.value,
-            invite: false,
-            invitedBy:"" ,
-            invite1:"" ,
-            invite2: "",
-        })
-        .then(function() {
-          console.log("User added to the collection!");
-        })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
-        });
+          console.log("User already exsists...redirecting to invite page");
+
         } else {
             // doc.data() will be undefined in this case
-            console.log("User already exsists...redirecting to invite page");
+            db.collection("users").doc(phone.value).set({
+              name: name.value,
+              phone: phone.value,
+              invited: false,
+              invitedBy:"" ,
+              invite1:"" ,
+              invite2: "",
+          })
+          .then(function() {
+            console.log("User added to the collection!");
+          })
+          .catch(function(error) {
+              console.error("Error writing document: ", error);
+          });
         }
     })
   } else {
