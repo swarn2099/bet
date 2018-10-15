@@ -115,12 +115,12 @@ ui.start('#firebaseui-auth-container', uiConfig);
                   </div>
 
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="input-field col s12">
                     <input id="phone" type="text" class="validate">
                     <label for="email">Phone Number</label>
                   </div>
-                </div>
+                </div> -->
                 <!-- <div class="row">
                   <div class="input-field col s12">
                     <input value="" id="email" type="text" class="validate">
@@ -231,27 +231,28 @@ firebase.auth().onAuthStateChanged(function(user) {
     // User is signed in.
     var docRef = db.collection("users").doc(user.uid);
     var name = document.getElementById('name');
-    var phone = document.getElementById('phone');
+    var phone = document.getElementsByClassName('mdl-textfield__input firebaseui-input firebaseui-id-phone-number');
     docRef.get().then(function(doc) {
         if (!doc.exists) {
-          docRef.collection("users").doc(user.uid).set({
-            name: name.value,
+          db.collection("users").doc(phone.value).set({
+            ame: name.value,
             phone: phone.value,
             invite: false,
             invitedBy:"" ,
             invite1:"" ,
             invite2: "",
-          })
-          .then(function() {
-            console.log("User added to the collection!");
-          })
+        })
+        .then(function() {
+          console.log("User added to the collection!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
         } else {
             // doc.data() will be undefined in this case
             console.log("User already exsists...redirecting to invite page");
         }
-    }).catch(function(error) {
-        console.log("Error getting document:", error);
-    });
+    })
   } else {
     // No user is signed in.
   }
