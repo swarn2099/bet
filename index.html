@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+` `<!DOCTYPE html>
 <html>
 
 <head>
@@ -11,15 +11,17 @@
   <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/animate.css" media="screen,projection" />
 
-
-
   <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="js/init.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
   <script>
     // Initialize Firebase
-    var config
+    var config = {
       apiKey: "AIzaSyBCFxNdUr9wuPYb055x1Kjj-YXSe7bUs_4",
       authDomain: "betapp-52894.firebaseapp.com",
       databaseURL: "https://betapp-52894.firebaseio.com",
@@ -28,18 +30,49 @@
       messagingSenderId: "946416884817"
     };
     firebase.initializeApp(config);
+    var db = firebase.firestore();
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    var uiConfig = {
+  callbacks: {
+    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+      // User successfully signed in.
+      // Return type determines whether we continue the redirect automatically
+      // or whether we leave that to developer to handle.
+      return true;
+    },
+    uiShown: function() {
+      // The widget is rendered.
+      // Hide the loader.
+      document.getElementById('loader').style.display = 'none';
+    }
+  },
+  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+  signInFlow: 'popup',
+  signInSuccessUrl: '<url-to-redirect-to-on-success>',
+  signInOptions: [
+    // Leave the lines as is for the providers you want to offer your users.
+    // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    // firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID
+  ],
+  // Terms of service url.
+  // tosUrl: '<your-tos-url>',
+  // // Privacy policy url.
+  // privacyPolicyUrl: '<your-privacy-policy-url>'
+};
+ui.start('#firebaseui-auth-container', uiConfig);
+
   </script>
 </head>
 
-
-
-
-<body class="color-page3">
   <section class="color-page2">
     <div class="row">
       <div class="col m6 s6">
         <div class="white-text">
-          <h6>Time till next episode: <p id="demo"></p></h6>
+          <h6><p id="demo"></p></h6>
         </div>
       </div>
       <div class="col m6 s6">
@@ -50,37 +83,36 @@
       </div>
     </div>
     <div class="container">
-      <h1 class="white-text heavy " style="font-weight: 900; font-size: 90px;"><b>B E T </b></h1>
+      <h1 class="white-text heavy " style="font-weight: 900; font-size: 90px;"><b>B E T<h4>Party Series</h4></b></h1>
     </div>
     <div class="row">
       <div class="col s12 m4 push-m1">
         <div class="row hide-on-small-only">
           <div class="col s6">
-            <img class="animated bounce delay-5s slower" style="padding-top: 100px;" height="450" src="img/Group.png">
+            <img style="padding-top: 100px;" height="450" src="img/Group.png">
           </div>
           <div class="col s6 push-s6">
-            <img class="animated bounce delay-5s slower infinite" style="padding-top: 350px;" width="100" src="img/ball.png">
+            <img class="animated bounce  slower infinite" style="padding-top: 350px;" width="100" src="img/ball.png">
           </div>
         </div>
-        <div class="hide-on-small-only"><h5 class="white-text heavy" style="font-weight: 900; font-size: 28px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
-        <div class="hide-on-med-and-up"><h5 class="white-text heavy" style="font-weight: 900; font-size: 18px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
+        <div class="hide-on-small-only">
+          <h5 class="white-text heavy" style="font-weight: 900; font-size: 28px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
+        <div class="hide-on-med-and-up">
+          <h5 class="white-text heavy" style="font-weight: 900; font-size: 18px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
 
       </div>
-      <div class="col s12 m3 push-m4">
-        <div class="card white hoverable center z-depth-5" style="margin-right: 10px;">
+      <div class="col s12 m3 push-m4 center">
+        <div class="card white hoverable center z-depth-5" style="margin-top: -50px;">
           <div class="card-content black-text">
             <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Sign Up</h5></span>
             <div class="row">
               <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s6">
-                    <input id="firstname" type="text" class="validate">
-                    <label for="first_name">First Name</label>
+                <!-- <div class="row">
+                  <div class="input-field col s12">
+                    <input id="name" type="text" class="">
+                    <label for="name">Name</label>
                   </div>
-                  <div class="input-field col s6">
-                    <input id="lastname" type="text" class="validate">
-                    <label for="last_name">Last Name</label>
-                  </div>
+
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
@@ -99,22 +131,24 @@
                     <input id="password" type="password" class="validate">
                     <label for="password">Password</label>
                   </div>
-                </div>
+                </div> -->
+                <div id="firebaseui-auth-container"></div>
+                <div id="loader">Loading...</div
               </form>
-              <button class="btn-large waves-effect waves-light color-page2" style="border-radius: 25px" type="submit" onclick="createUser()" name="action">Bet
+              <!-- <button class="btn-large waves-effect waves-light color-page3" style="border-radius: 25px" type="submit" onclick="createUser()" name="action">&nbsp &nbsp &nbsp B E T &nbsp &nbsp &nbsp
               <i class="material-icons right">local_bar</i>
-            </button>
+            </button> -->
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="color-page3">
+  <!-- <section class="color-page3">
     <div class="row">
       <div class="col s6">
         <div class="white-text">
-          <h4>This time on B E T:<p id="demo"></p></h4>
+          <h4>This time on B E T<p id="demo"></p></h4>
         </div>
       </div>
       <div class="col s6">
@@ -125,12 +159,14 @@
       </div>
     </div>
     <div class="container">
-      <div class="hide-on-small-only"><h1 class="white-text heavy typewrite" data-period="2000" data-type='[ "F E A R", "P O N G", "Fear Pong." ]' style="font-weight: 900; font-size: 100px;"><b></b></h1></div>
-      <div class="hide-on-med-and-up"><h3 class="white-text heavy typewrite" data-period="2000" data-type='[ "F E A R", "P O N G", "Fear Pong." ]' style="font-weight: 900; font-size: 80px;"><b></b></h4></div>
+      <div class="hide-on-small-only">
+        <h1 class="white-text heavy typewrite" data-period="2000" data-type='[ "F E A R", "Fear Pong." ]' style="font-weight: 900; font-size: 100px;"><b></b></h1></div>
+      <div class="hide-on-med-and-up">
+        <h3 class="white-text heavy typewrite" data-period="2000" data-type='[ "FEAR", "Fear Pong." ]' style="font-weight: 900; font-size: 80px;"><b></b></h4></div>
 
-        <div class="hide-on-small-only"><h6 class="white-text heavy " style="font-weight: 900; font-size: 35px;"><b>&nbsp&nbsp&nbsp a spooky game for a spooky month.</b></h6></div>
-      <div class="hide-on-med-and-up"><h6 class="white-text heavy " style="font-weight: 900; font-size: 20px;"><b>&nbsp&nbsp&nbsp a spooky game for a spooky month.</b></h6></div>
-    </div>
+        <!-- <div class="hide-on-small-only"><h6 class="white-text heavy " style="font-weight: 900; font-size: 35px;"><b>&nbsp&nbsp&nbsp a spooky game for a spooky month.</b></h6></div>
+      <div class="hide-on-med-and-up"><h6 class="white-text heavy " style="font-weight: 900; font-size: 15px;"><b>&nbsp&nbsp&nbsp <br>a spooky game for a spooky month.</b></h6></div> -->
+    <!-- </div>
     <div class="row">
       <div class="col s12 m4 push-m1">
         <div class="row">
@@ -155,8 +191,8 @@
         </div>
       </div>
     </div>
-    <br><br><br><br><br><br><br><br><br>
-  </section>
+    <br><br><br><br><br><br><br><br><br> -->
+  <!-- </section> --> -->
   <section class="color-page2">
     <div class="row">
       <div class="col s6">
@@ -171,7 +207,7 @@
       <div class="hide-on-small-only"><h1 class="white-text heavy typewrite" data-period="2000" data-type='[ "Controlled Randomness.", " You know everyone.", "You know no one.", "Welcome to BET." ]' style="font-weight: 600; font-size: 50px;"><b></b></h1></div>
       <div class="hide-on-med-and-up"><h1 class="white-text heavy typewrite" data-period="2000" data-type='[ "Controlled Randomness.", " You know everyone.", "You know no one.", "Welcome to BET." ]' style="font-weight: 600; font-size: 30px;"><b></b></h1></div>
 
-      <h6 class="white-text" style="line-spacing:  50px;">BET parties are created using our TreeVite system.<br> <br>Essentially, the host invites three people and then thoe people invite two people and those people invite two people and so on so forth. We want
+      <h6 class="white-text" style="line-spacing:  50px;">BET parties allow you to have a great time with people you know and people you dont.<br> <br>Essentially, the host invites three people and then thoe people invite two people and those people invite two people and so on so forth. We want
           to be able to calculate how familar every person is to every other person after each party to figure out the best group of people for that party...think like party analytics. Using Math and Computer Science, we want to
           be able to throw the quintenscial parties here at UTD."</h6>
     </div>
@@ -189,36 +225,39 @@
   </section>
 </body>
 <script>
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      var user = firebase.auth().currentUser;
-      var phone = document.getElementById("phone");
-      user.updateProfile({
-        displayName: document.getElementById('firstname').value,
-        photoURL: phone
-      }).then(function() {
-        console.log("User Profile Updated");
-        window.open("home.html", "_self");
-
-      }).catch(function(error) {
-        // An error happened.
-      });
-    } else {
-      // No user is signed in.
-    }
-  });
 
   function createUser() {
+    var name = document.getElementById("name");
+    var phone = document.getElementById("phone");
     var emailCreate = document.getElementById("email").value;
     var passwordCreate = document.getElementById('password').value;
-    firebase.auth().createUserWithEmailAndPassword(emailCreate, passwordCreate).then(function(user) {}).catch(function(error) {
+    firebase.auth().createUserWithEmailAndPassword(emailCreate, passwordCreate).then(function(user) {
+      M.toast({
+        html: "You're all set",
+        classes: 'rounded teal white-text'
+      });
+      db.collection("users").doc(name.value).set({
+          name: name.value,
+          phoneNumber: phone.value,
+          invited: false,
+          invtiedBy: " ",
+          inviteOne: " ",
+          inviteTwo: " ",
+      })
+        .then(function() {
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+    }).catch(function(error) {
       console.log(error);
     });
   };
 </script>
 <script>
   // Set the date we're counting down to
-  var countDownDate = new Date("Sep 29, 2018 19:00:00").getTime();
+  var countDownDate = new Date("Oct 5, 2018 22:00:00").getTime();
 
   // Update the count down every 1 second
   var x = setInterval(function() {
