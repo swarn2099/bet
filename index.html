@@ -68,7 +68,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     var name = document.getElementById('name');
-    var phone = document.getElementsByClassName('firebaseui-input');
+    var phone = document.getElementsByClassName('class="mdl-textfield__input firebaseui-input firebaseui-id-phone-number"');
     var docRef = db.collection("users").doc(name.value);
 
     docRef.get().then(function(doc) {
@@ -79,7 +79,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             // doc.data() will be undefined in this case
             db.collection("users").doc(name.value).set({
               name: name.value,
-              phone: phone.value,
+              phone: phone,
               invited: false,
               invitedBy: " ",
               invite1: " ",
