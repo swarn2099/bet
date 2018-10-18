@@ -48,7 +48,7 @@
       },
       // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
       signInFlow: 'popup',
-      signInSuccessUrl: 'https://swarn2099.github.io/bet/invite.html',
+      signInSuccessUrl: 'https://google.com',
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -101,7 +101,6 @@
 </head>
 
 <body class="color-page2">
-
   <section class="color-page2">
     <div class="row">
       <div class="col m6 s6">
@@ -110,34 +109,86 @@
       </div>
     </div>
     <div class="container">
-      <h1 class="white-text heavy " style="font-weight: 900; font-size: 90px;"><b>B E T</b></h1>
-    </div>
-    <div class="row">
-      <div class="col s12 m4 push-m1">
-        <div class="hide-on-small-only">
-          <h5 class="white-text heavy" style="font-weight: 900; font-size: 28px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
-        <div class="hide-on-med-and-up">
-          <h5 class="white-text heavy" style="font-weight: 900; font-size: 18px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
-      </div>
-      <div class="col s12 m3 push-m4 center">
-        <div class="card white hoverable center z-depth-5" style="margin-top: -50px;">
-          <div class="card-content black-text">
-            <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Sign Up</h5></span>
-            <div class="row">
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="name" type="text" class="">
-                    <label for="name">Name</label>
+      <h1 class="white-text heavy " style="font-weight: 900; font-size: 60px;"><b>Welcome Swarn</b></h1>
+      <br><br><br>
+      <div class="row">
+        <div class="col s4">
+          <div class="card white center hoverable z-depth-5" style="margin-top: -50px;">
+            <div class="card-content black-text">
+              <span class="card-title left heavy-text"><h5><b>Confirm your spot</b></h5></span>
+              <div class="row">
+                <br><br><br><br>
+                <form class="col s12">
+                  <div class="row">
+                    <a class="waves-effect waves-light btn-large blue darken-3 hover" style="border-radius: 25px;"><i class="material-icons right">check</i>Let's Party.</a>
+                    <br><br>
+                    <a class="waves-effect waves-light btn-large red darken-2" style="border-radius: 25px;"><i class="material-icons right">clear</i>Nah, can't make it.</a>
+                    <br><br><br>
                   </div>
-                </div>
-                <div id="firebaseui-auth-container"></div>
-                <div id="loader">Loading...</div </form>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="card white center hoverable z-depth-5" style="margin-top: -50px;">
+            <div class="card-content black-text">
+              <span class="card-title left"><h5><b>Invite Homie 1</b></h5></span>
+              <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="name" type="text" class="">
+                      <label for="name">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                      <input id="name" type="text" class="">
+                      <label for="name">Phone Number</label>
+                    </div>
+                    <a class="waves-effect waves-light btn cyan accent-4" style="border-radius: 25px;"><i class="material-icons right">local_bar</i>invite</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="card white center hoverable z-depth-5" style="margin-top: -50px;">
+            <div class="card-content black-text">
+              <span class="card-title left"><h5><b>Invite Homie 2</b></h5></span>
+              <div class="row">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="name" type="text" class="">
+                      <label for="name">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                      <input id="name" type="text" class="">
+                      <label for="name">Phone Number</label>
+                    </div>
+                    <a class="waves-effect waves-light btn yellow darken-2" style="border-radius: 25px;"><i class="material-icons right">local_bar</i>invite</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col s12">
+          <div class="card white center hoverable z-depth-5" style="margin-top: px;">
+            <div class="card-content black-text">
+              <span class="card-title left heavy-text"><h5><b>Here are the people coming.</b></h5></span>
+              <div class="row">
+                <br><br><br><br>
+                <img class="responsive-img" src="img/tree.png">
+
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
 </body>
 <script>
