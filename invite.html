@@ -128,19 +128,15 @@
   </section>
 </body>
 <script>
-var user = firebase.auth().currentUser;
-var name, email, photoUrl, uid, emailVerified;
-
-if (user != null) {
-  name = user.displayName;
-  email = user.email;
-  photoUrl = user.photoURL;
-  emailVerified = user.emailVerified;
-  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-                   // this value to authenticate with your backend server, if
-                   // you have one. Use User.getToken() instead.
-}
-console.log(name);
+firebase.auth().onAuthStateChanged(function(user) {
+     if (user) {
+       // User is signed in.
+       var displayName = user.displayName;
+       var uid = user.uid;
+       console.log(displayName);
+       console.log(uid);
+     }
+   });
 var name1 = document.getElementById('name1');
 var phone1 = document.getElementById('phone1');
 function invite1(){
