@@ -18,7 +18,7 @@
   <!-- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script> -->
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
   <script>
     // Initialize Firebase
     var config = {
@@ -33,73 +33,73 @@
     var db = firebase.firestore();
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     var uiConfig = {
-  callbacks: {
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
-      return true;
-    },
-    uiShown: function() {
-      // The widget is rendered.
-      // Hide the loader.
-      document.getElementById('loader').style.display = 'none';
-    }
-  },
-  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-  signInFlow: 'popup',
-  signInSuccessUrl: 'https://google.com',
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    // firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.PhoneAuthProvider.PROVIDER_ID
-  ],
-  // Terms of service url.
-  // tosUrl: '<your-tos-url>',
-  // // Privacy policy url.
-  // privacyPolicyUrl: '<your-privacy-policy-url>'
-};
-ui.start('#firebaseui-auth-container', uiConfig);
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    var name = document.getElementById('name');
-    var phone = document.getElementsByClassName('class="mdl-textfield__input firebaseui-input firebaseui-id-phone-number"');
-    var docRef = db.collection("users").doc(name.value);
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          return true;
+        },
+        uiShown: function() {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      signInSuccessUrl: 'https://google.com',
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        // firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.PhoneAuthProvider.PROVIDER_ID
+      ],
+      // Terms of service url.
+      // tosUrl: '<your-tos-url>',
+      // // Privacy policy url.
+      // privacyPolicyUrl: '<your-privacy-policy-url>'
+    };
+    ui.start('#firebaseui-auth-container', uiConfig);
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        var name = document.getElementById('name');
+        var phone = document.getElementsByClassName('class="mdl-textfield__input firebaseui-input firebaseui-id-phone-number"');
+        var docRef = db.collection("users").doc(name.value);
 
-    docRef.get().then(function(doc) {
-        if (doc.exists) {
-          console.log("User already exsists...redirecting to invite page");
+        docRef.get().then(function(doc) {
+          if (doc.exists) {
+            console.log("User already exsists...redirecting to invite page");
 
-        } else {
+          } else {
             // doc.data() will be undefined in this case
             db.collection("users").doc(name.value).set({
-              name: name.value,
-              phone: phone.value,
-              invited: false,
-              invitedBy: " ",
-              invite1: " ",
-              invite2: " ",
-          })
-          .then(function() {
-            console.log("User added to the collection!");
-          })
-          .catch(function(error) {
-              console.error("Error writing document: ", error);
-          });
-        }
-    })
-  } else {
-    // No user is signed in.
-  }
-});
-
+                name: name.value,
+                phone: phone.value,
+                invited: false,
+                invitedBy: " ",
+                invite1: " ",
+                invite2: " ",
+              })
+              .then(function() {
+                console.log("User added to the collection!");
+              })
+              .catch(function(error) {
+                console.error("Error writing document: ", error);
+              });
+          }
+        })
+      } else {
+        // No user is signed in.
+      }
+    });
   </script>
 </head>
+
 <body class="color-page2">
 
   <section class="color-page2">
@@ -118,7 +118,6 @@ firebase.auth().onAuthStateChanged(function(user) {
           <h5 class="white-text heavy" style="font-weight: 900; font-size: 28px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
         <div class="hide-on-med-and-up">
           <h5 class="white-text heavy" style="font-weight: 900; font-size: 18px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
-
       </div>
       <div class="col s12 m3 push-m4 center">
         <div class="card white hoverable center z-depth-5" style="margin-top: -50px;">
@@ -131,12 +130,9 @@ firebase.auth().onAuthStateChanged(function(user) {
                     <input id="name" type="text" class="">
                     <label for="name">Name</label>
                   </div>
-
                 </div>
-
                 <div id="firebaseui-auth-container"></div>
-                <div id="loader">Loading...</div
-              </form>
+                <div id="loader">Loading...</div </form>
             </div>
           </div>
         </div>
@@ -145,96 +141,6 @@ firebase.auth().onAuthStateChanged(function(user) {
   </section>
 </body>
 <script>
-
-</script>
-<script>
-  // Set the date we're counting down to
-  var countDownDate = new Date("Oct 31, 2018 22:00:00").getTime();
-
-  // Update the count down every 1 second
-  var x = setInterval(function() {
-
-    // Get todays date and time
-    var now = new Date().getTime();
-
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Display the result in the element with id="demo"
-    document.getElementById("demo").innerHTML = days + "d " + hours + "h " +
-      minutes + "m " + seconds + "s ";
-
-    // If the count down is finished, write some text
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("demo").innerHTML = "EXPIRED";
-    }
-  }, 1000);
-
-  var TxtType = function(el, toRotate, period) {
-    this.toRotate = toRotate;
-    this.el = el;
-    this.loopNum = 0;
-    this.period = parseInt(period, 10) || 2000;
-    this.txt = '';
-    this.tick();
-    this.isDeleting = false;
-  };
-
-  TxtType.prototype.tick = function() {
-    var i = this.loopNum % this.toRotate.length;
-    var fullTxt = this.toRotate[i];
-
-    if (this.isDeleting) {
-      this.txt = fullTxt.substring(0, this.txt.length - 1);
-    } else {
-      this.txt = fullTxt.substring(0, this.txt.length + 1);
-    }
-
-    this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-
-    var that = this;
-    var delta = 200 - Math.random() * 100;
-
-    if (this.isDeleting) {
-      delta /= 2;
-    }
-
-    if (!this.isDeleting && this.txt === fullTxt) {
-      delta = this.period;
-      this.isDeleting = true;
-    } else if (this.isDeleting && this.txt === '') {
-      this.isDeleting = false;
-      this.loopNum++;
-      delta = 500;
-    }
-
-    setTimeout(function() {
-      that.tick();
-    }, delta);
-  };
-
-  window.onload = function() {
-    var elements = document.getElementsByClassName('typewrite');
-    for (var i = 0; i < elements.length; i++) {
-      var toRotate = elements[i].getAttribute('data-type');
-      var period = elements[i].getAttribute('data-period');
-      if (toRotate) {
-        new TxtType(elements[i], JSON.parse(toRotate), period);
-      }
-    }
-    // INJECT CSS
-    var css = document.createElement("style");
-    css.type = "text/css";
-    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-    document.body.appendChild(css);
-  };
 </script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 
