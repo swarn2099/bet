@@ -128,40 +128,42 @@
   </section>
 </body>
 <script>
-var invitee="";
-firebase.auth().onAuthStateChanged(function(user) {
-     if (user) {
+var invitee;
 
-      db.collection("users").doc(user.providerData[0].phoneNumber).get().then(function(doc) {
-          if (doc.exists) {
-              console.log("Document data:", doc.data());
-              invitee = doc.data().name;
-          } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
-          }
-      }).catch(function(error) {
-          console.log("Error getting document:", error);
-      });
-     }
-   });
 var name1 = document.getElementById('name1');
 var phone1 = document.getElementById('phone1');
 function invite1(){
-  db.collection("users").doc(phone1.value).set({
-      name: name1.value,
-      phone: "+1"+phone1.value,
-      invited: true,
-      invitedBy: invitee,
-      invite1: " ",
-      invite2: " ",
-    })
-    .then(function() {
-      console.log("User added to the collection!");
-    })
-    .catch(function(error) {
-      console.error("Error writing document: ", error);
-    });
+
+  firebase.auth().onAuthStateChanged(function(user) {
+       if (user) {
+        db.collection("users").doc(user.providerData[0].phoneNumber).get().then(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                db.collection("users").doc(phone1.value).set({
+                    name: name1.value,
+                    phone: "+1"+phone1.value,
+                    invited: true,
+                    invitedBy: doc.data().name,
+                    invite1: " ",
+                    invite2: " ",
+                  })
+                  .then(function() {
+                    console.log("User added to the collection!");
+                  })
+                  .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                  });
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+       }
+     });
+
+
 };
 </script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
