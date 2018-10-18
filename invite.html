@@ -131,7 +131,7 @@
 firebase.auth().onAuthStateChanged(function(user) {
      if (user) {
        // User is signed in.
-       var displayName = user.displayName;
+       var displayName = user.providerData[0].phoneNumber;
        var uid = user.uid;
        console.log(displayName);
        console.log(uid);
