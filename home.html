@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" href="../img/poolIcon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | BET</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="css/animate.css" media="screen,projection" />
+
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="js/init.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBCFxNdUr9wuPYb055x1Kjj-YXSe7bUs_4",
+      authDomain: "betapp-52894.firebaseapp.com",
+      databaseURL: "https://betapp-52894.firebaseio.com",
+      projectId: "betapp-52894",
+      storageBucket: "betapp-52894.appspot.com",
+      messagingSenderId: "946416884817"
+    };
+    firebase.initializeApp(config);
+    var db = firebase.firestore();
+  </script>
+
+</head>
+
+<body class="color-page2">
+  <section class="color-page2">
+    <div class="row">
+      <div class="col m6 s6">
+        <div class="white-text">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h1 class="white-text heavy " style="font-weight: 900; font-size: 60px;"><b>Welcome Swarn</b></h1>
+      <br><br><br>
+      <div class="row">
+        <div class="col m4 s12">
+          <div class="card white center hoverable z-depth-5" style="margin-top: -50px;">
+            <div class="card-content black-text">
+              <span class="card-title left heavy-text"><h5><b>Confirm your spot</b></h5></span>
+              <div class="row">
+                <br><br><br><br>
+                <form class="col s12">
+                  <div class="row">
+                    <a class="waves-effect waves-light btn-large blue darken-3 hover" style="border-radius: 25px;"><i class="material-icons right">check</i>Let's Party.</a>
+                    <br><br>
+                    <a class="waves-effect waves-light btn-large red darken-2" style="border-radius: 25px;"><i class="material-icons right">clear</i>Nah, can't make it.</a>
+                    <br><br><br>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col m8 s12">
+          <div class="card white center hoverable z-depth-5" style="margin-top: -50px;">
+            <div class="card-content black-text">
+              <span class="card-title left"><h5><b>Invite your Homies</b></h5></span>
+              <div class="row">
+                <form class="col s12">
+                  <div class="row"><br><br>
+                    <h4><span class="heavy-text"><b>FD323</b></span></h4>
+                    <br><br>
+                    <a class="waves-effect waves-light btn yellow darken-2" style="border-radius: 25px;"><i class="material-icons right">local_bar</i>invite</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col s12">
+          <div class="card white center hoverable z-depth-5" style="margin-top: px;">
+            <div class="card-content black-text">
+              <span class="card-title left heavy-text"><h5><b>Here are the people coming.</b></h5></span>
+              <div class="row">
+                <br><br><br><br>
+                <img class="responsive-img" src="img/tree.png">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+</body>
+<script>
+var invitee;
+
+var name1 = document.getElementById('name1');
+var phone1 = document.getElementById('phone1');
+function invite1(){
+
+  firebase.auth().onAuthStateChanged(function(user) {
+       if (user) {
+        db.collection("users").doc(user.providerData[0].phoneNumber).get().then(function(doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                db.collection("users").doc(phone1.value).set({
+                    name: name1.value,
+                    phone: "+1"+phone1.value,
+                    invited: true,
+                    invitedBy: doc.data().,
+                    invite1: " ",
+                    invite2: " ",
+                  })
+                  .then(function() {
+                    console.log("User added to the collection!");
+                  })
+                  .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                  });
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+       }
+     });
+
+
+};
+</script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+</html>
