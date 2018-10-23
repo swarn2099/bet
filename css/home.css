@@ -1,6 +1,4 @@
-.sidenav {
-  width: 100px;
-}
+
 
 .color-page2 {
   background: linear-gradient(45deg, #000000, #051937, #ff0000 );
@@ -8,14 +6,8 @@
   animation: pastelRainbow 15s ease infinite;
   background-size: 400% 400%;
 }
-.color-page3 {
-  background: linear-gradient(45deg, #000000, #000000,  #ff5000);
-  position: relative;
-  animation: pastelRainbow 10s ease infinite;
-  background-size: 400% 400%;
-}
+
 html {
-  font-family: 'Montserrat';
   overflow-x: hidden;
   background: linear-gradient(45deg, #000000, #051937, #ff0000 );
   position: relative;
@@ -23,17 +15,12 @@ html {
   background-size: 400% 400%;
 
 }
-
+.button{
+  border-radius: 25px;
+}
 .card {
   border-radius: 20px;
   padding: 0px;
-}
-
-.reduceheight {
-  max-height: 500px;
-  border-radius: 20px;
-  padding: 0px;
-  margin: none;
 }
 
 
