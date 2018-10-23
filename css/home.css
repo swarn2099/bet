@@ -1,4 +1,6 @@
-
+.button{
+  border-radius: 25px;
+}
 
 .color-page2 {
   background: linear-gradient(45deg, #000000, #051937, #ff0000 );
@@ -8,6 +10,7 @@
 }
 
 html {
+  font-family: 'Montserrat';
   overflow-x: hidden;
   background: linear-gradient(45deg, #000000, #051937, #ff0000 );
   position: relative;
@@ -15,9 +18,7 @@ html {
   background-size: 400% 400%;
 
 }
-.button{
-  border-radius: 25px;
-}
+
 .card {
   border-radius: 20px;
   padding: 0px;
