@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
   <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
-  <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/animate.css" media="screen,projection" />
 
   <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
@@ -54,6 +53,8 @@
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebase.auth.PhoneAuthProvider.PROVIDER_ID
       ],
@@ -61,23 +62,24 @@
     };
     ui.start('#firebaseui-auth-container', uiConfig);
   </script>
+  <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
 
 
 </head>
 
-<body class="container"><br><br>
+<body class="container">
       <h1 class="white-text heavy center"><b>BET</b></h1>
-      <img class="responsive-img" src="img/circle.gif" >
-      <div class="col s12" style="padding-top: 20px;">
+      <img class="responsive-img center-align" src="img/circle.gif" >
+      <div class="col s12">
         <div class="card white hoverable center z-depth-5" >
           <div class="card-content black-text">
-            <span class="card-title left"><b>Let's Get Started</b></span>
+            <span class="card-title left" style="font-weight: 900px;">Let's Get Started</span>
             <div class="row">
               <form class="col s12">
                 <hr/>
                 <div id="firebaseui-auth-container"></div>
-                <br><br>
                 <div id="loader">Loading...</div>
+                <br><br>
               </form>
             </div>
           </div>

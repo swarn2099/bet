@@ -1,4 +1,4 @@
-.button{
+button{
   border-radius: 25px;
 }
 
@@ -14,7 +14,7 @@ html {
   overflow-x: hidden;
   background: linear-gradient(45deg, #000000, #051937, #ff0000 );
   position: relative;
-  animation: pastelRainbow 15s ease infinite;
+  animation: pastelRainbow 10s ease infinite;
   background-size: 400% 400%;
 
 }
