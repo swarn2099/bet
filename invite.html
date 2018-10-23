@@ -73,16 +73,10 @@
               <span class="card-title left"><h5><b>Invite Homie 1</b></h5></span>
               <div class="row">
                 <form class="col s12">
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input id="name1" type="text" class="">
-                      <label for="name1">Name</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input id="phone1" type="text" class="">
-                      <label for="phone1">Phone Number</label>
-                    </div>
-                    <a class="waves-effect waves-light btn cyan accent-4" style="border-radius: 25px;" onclick="invite1()"><i class="material-icons right">local_bar</i>invite</a>
+                  <div class="row"><br><br>
+                    <h4><span class="heavy-text"><b>FD323</b></span></h4>
+                    <br><br>
+                    <a class="waves-effect waves-light btn yellow darken-2" style="border-radius: 25px;"><i class="material-icons right">local_bar</i>invite</a>
                   </div>
                 </form>
               </div>
@@ -95,15 +89,9 @@
               <span class="card-title left"><h5><b>Invite Homie 2</b></h5></span>
               <div class="row">
                 <form class="col s12">
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input id="name" type="text" class="">
-                      <label for="name">Name</label>
-                    </div>
-                    <div class="input-field col s12">
-                      <input id="name" type="text" class="">
-                      <label for="name">Phone Number</label>
-                    </div>
+                  <div class="row"><br><br>
+                    <h4><span class="heavy-text"><b>FD323</b></span></h4>
+                    <br><br>
                     <a class="waves-effect waves-light btn yellow darken-2" style="border-radius: 25px;"><i class="material-icons right">local_bar</i>invite</a>
                   </div>
                 </form>
@@ -143,7 +131,7 @@ function invite1(){
                     name: name1.value,
                     phone: "+1"+phone1.value,
                     invited: true,
-                    invitedBy: doc.data().name,
+                    invitedBy: doc.data().,
                     invite1: " ",
                     invite2: " ",
                   })
