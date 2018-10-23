@@ -63,36 +63,27 @@
     ui.start('#firebaseui-auth-container', uiConfig);
 
   </script>
+  <style>
+  .button{
+    border-radius: 25px;
+  }
+  </style>
+
 </head>
 
-<body class="color-page2">
-    <div class="row">
-      <div class="col m6 s6">
-        <div class="white-text">
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <h1 class="white-text heavy " style="font-weight: 800; font-size: 90px;"><b>BET</b></h1>
-    </div>
-    <div class="row">
-      <div class="col s12 m4 push-m1">
-        <div class="hide-on-small-only">
-          <h5 class="white-text heavy" style="font-weight: 900; font-size: 28px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
-        <div class="hide-on-med-and-up">
-          <h5 class="white-text heavy" style="font-weight: 900; font-size: 18px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
-      </div>
-      <div class="col s12 m3 push-m4 center">
-        <div class="card white hoverable center z-depth-5" style="margin-top: -50px;">
+<body class="container">
+      <h1 class="white-text heavy center"><b>BET</b></h1>
+      <div class="col s12" style="padding-top: 20px;">
+        <div class="card white hoverable center z-depth-5" >
           <div class="card-content black-text">
-            <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Sign Up</h5></span>
+            <span class="card-title left"><b>Let's Get Started</b></span>
             <div class="row">
               <form class="col s12">
-                <div class="row">
-
-                </div>
+                <hr/>
                 <div id="firebaseui-auth-container"></div>
-                <div id="loader">Loading...</div </form>
+                <br><br>
+                <div id="loader">Loading...</div>
+              </form>
             </div>
           </div>
         </div>
