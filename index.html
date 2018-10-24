@@ -60,6 +60,7 @@
       ],
 
     };
+
     ui.start('#firebaseui-auth-container', uiConfig);
   </script>
   <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
@@ -68,15 +69,17 @@
 </head>
 
 <body class="container">
-      <h1 class="white-text heavy center"><b>BET</b></h1>
-      <img class="responsive-img center-align" src="img/circle.gif" >
-      <div class="col s12">
-        <div class="card white hoverable center z-depth-5" >
+      <h1 class="white-text  center" style="padding-top: 30%; font-weight: 900px;"><b>BET</b></h1>
+      <h5 class="white-text heavy center"><b>P a r t y &nbsp &nbsp S e r i e s</b></h5>
+
+      <!-- <img class="responsive-img center-align" src="img/circle.gif" > -->
+      <div class="col s12" style="padding-top: 30%;">
+        <div class="card white hoverable center z-depth-5 animated zoomIn" >
           <div class="card-content black-text">
             <span class="card-title left" style="font-weight: 900px;">Let's Get Started</span>
             <div class="row">
               <form class="col s12">
-                <hr/>
+                <hr/><br>
                 <div id="firebaseui-auth-container"></div>
                 <div id="loader">Loading...</div>
                 <br><br>
