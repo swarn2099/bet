@@ -33,48 +33,41 @@
     };
     firebase.initializeApp(config);
     var db = firebase.firestore();
-</script>
+  </script>
 </head>
 
-<body class="color-page2">
-  <section class="color-page2">
-    <div class="row">
-      <div class="col m6 s6">
-        <div class="white-text">
-        </div>
+<body class="container ">
+  <div class="row">
+    <div class="col m6 s6">
+      <div class="white-text">
       </div>
     </div>
-    <div class="container">
-      <h1 class="white-text heavy " style="font-weight: 900; font-size: 90px;"><b>BET</b></h1>
-    </div>
-    <div class="row">
-      <div class="col s12 m4 push-m1">
-        <div class="hide-on-small-only">
-          <h5 class="white-text heavy" style="font-weight: 900; font-size: 28px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
-        <div class="hide-on-med-and-up">
-          <h5 class="white-text heavy" style="font-weight: 900; font-size: 18px; padding-top: 20px;"><b>A party with controlled randomness.</b></h5></div>
-      </div>
-      <div class="col s12 m3 push-m4 center">
-        <div class="card white hoverable center z-depth-5" style="margin-top: -50px;">
-          <div class="card-content black-text">
-            <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Enter Invite Code</h5></span>
-            <div class="row">
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="invite_code" type="email" class="validate">
-                    <label for="email">Invite Code</label>
-                  </div>
+  </div>
+  <div class="container">
+    <h1 class="white-text  center" style="padding-top: 30%; font-weight: 900px;"><b>BET</b></h1>
+    <h5 class="white-text heavy center"><b>P a r t y &nbsp &nbsp S e r i e s</b></h5>
+
+    <div class="col s12 " style="padding-top: 30%;">
+      <div class="card white hoverable center z-depth-5 animated jackInTheBox slow delay-1s	" style="margin-top: -50px;">
+        <div class="card-content black-text">
+          <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Enter Invite Code</h5></span>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="invite_code" type="text" class="validate">
+                  <label for="email">Invite Code</label>
                 </div>
-            </div>
-            <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;"><i class="material-icons right">local_bar</i>Let's Go</a>
+              </div>
           </div>
+          <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;"><i class="material-icons right">local_bar</i>Let's Go</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </body>
 <script>
 </script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
+
 </html>
