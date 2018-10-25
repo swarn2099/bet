@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-title" content="BETParties">
   <title>Home | BET</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <!-- <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'> -->
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/animate.css" media="screen,projection" />
@@ -17,10 +17,10 @@
   <script type="text/javascript" src="js/init.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script> -->
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+
   <script>
     // Initialize Firebase
     var config = {
@@ -34,9 +34,11 @@
     firebase.initializeApp(config);
     var db = firebase.firestore();
   </script>
+  <script type="text/javascript" src="js/bool.js"></script>
+
 </head>
 
-<body class="container ">
+<body class="container " >
   <div class="row">
     <div class="col m6 s6">
       <div class="white-text">
@@ -56,18 +58,22 @@
               <div class="row">
                 <div class="input-field col s12">
                   <input id="invite_code" type="text" class="validate">
-                  <label for="email">Invite Code</label>
+                  <label for="invite_code">Invite Code</label>
                 </div>
               </div>
           </div>
-          <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;"><i class="material-icons right">local_bar</i>Let's Go</a>
+          <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">local_bar</i>Let's Party</a>
         </div>
       </div>
     </div>
   </div>
+  <div style="padding-bottom: 50px;"></div>
 </body>
 <script>
+console.log(array);
+
 </script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
+
 
 </html>
