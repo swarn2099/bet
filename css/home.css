@@ -10,17 +10,22 @@ button{
 }
 
 html {
-  /* font-family: 'Montserrat'; */
+  font-family: 'helvetica';
   overflow-x: hidden;
-  background: linear-gradient(45deg, #000000, #051937, #ff0000 );
+  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
   position: relative;
   animation: pastelRainbow 10s ease infinite;
-  background-size: 400% 400%;
+  background-size: 100% 100%;
 
 }
 
-.card {
-  border-radius: 20px;
+.cardRounded {
+  border-radius: 25px;
+  padding: 0px;
+}
+
+.cardRoundedLess {
+  border-radius: 15px;
   padding: 0px;
 }
 
