@@ -12,22 +12,22 @@ button{
 html {
   font-family: 'helvetica';
   overflow-x: hidden;
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
   position: relative;
   animation: pastelRainbow 10s ease infinite;
   background-size: 100% 100%;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+
 
 }
 
-.cardRounded {
+.card{
   border-radius: 25px;
   padding: 0px;
 }
 
-.cardRoundedLess {
-  border-radius: 15px;
-  padding: 0px;
-}
 
 
 @keyframes pastelRainbow {
