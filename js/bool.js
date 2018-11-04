@@ -79,27 +79,14 @@ function copyToClipboard() {
   // document.execCommand("copy");
   // $temp.remove();
   //   alert("Your code has been copied. Just paste it in the messaging app of you choice and send it. Remeber you only get 2 invited." );
-  var $input = $(' some input/textarea ');
-$input.val(result);
-if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-  var el = $input.get(0);
-  var editable = el.contentEditable;
-  var readOnly = el.readOnly;
-  el.contentEditable = true;
-  el.readOnly = false;
-  var range = document.createRange();
-  range.selectNodeContents(el);
-  var sel = window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(range);
-  el.setSelectionRange(0, 999999);
-  el.contentEditable = editable;
-  el.readOnly = readOnly;
-} else {
-  $input.select();
-}
-document.execCommand('copy');
-$input.blur();
+  navigator.clipboard.writeText('Hey there, you have been invited to a party. Go to swarn2099.github.io/bet and enter the following invite code to confirm your spot: '+ $('#myCode').text()).select()')
+    .then(() => {
+      console.log('Text copied to clipboard');
+    })
+    .catch(err => {
+      // This can happen if the user denies clipboard permissions:
+      console.error('Could not copy text: ', err);
+    });
 
 }
 
