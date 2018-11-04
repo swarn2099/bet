@@ -79,7 +79,8 @@ function copyToClipboard() {
   // document.execCommand("copy");
   // $temp.remove();
   //   alert("Your code has been copied. Just paste it in the messaging app of you choice and send it. Remeber you only get 2 invited." );
-  navigator.clipboard.writeText('Hey there, you have been invited to a party. Go to swarn2099.github.io/bet and enter the following invite code to confirm your spot: '+ $('#myCode').text()).select()')
+
+  navigator.clipboard.writeText('Hey there, you have been invited to a party. Go to swarn2099.github.io/bet and enter the following invite code to confirm your spot:')
     .then(() => {
       console.log('Text copied to clipboard');
     })
