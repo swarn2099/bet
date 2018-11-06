@@ -12,7 +12,8 @@ var inviteCodeArray, userInputCode, parent, newcode;
   Hide 3 cards
  */
 $(document).ready(function() {
-  console.log("Document loaded and hide 3 cards");
+  console.log("Welcome to BET, the tree invite system.");
+  console.log("All systems GO ... waiting for user input");
   $("#nameCard").hide();
   $("#inviteOthers").hide();
   $("#tree").hide();
@@ -40,7 +41,7 @@ function checkInviteCode() {
   // 2.) Finds the user whose code was just used
   db.collection("partyTree").where("myCode", "==", userInputCode.value).get().then(
       function(querySnapshot) {
-        if(querySnapshot.exsists){
+        if(querySnapshot){
           querySnapshot.forEach(function(doc) {
             // 3a.) If the user was found AND the code has been used less than 3 times
             if (doc.data().timesUsed < 2) {
@@ -48,13 +49,7 @@ function checkInviteCode() {
               //This guy is the parent so setting parent var to his name
               parent = doc.data().name;
               console.log("Parent => ", parent);
-              // Updating times used since it was just used once
-              db.collection("partyTree").doc(parent).update({
-                  timesUsed: doc.data().timesUsed + 1,
-                })
-                .then(function() {
-                  console.log("Times Used field updated...");
-                });
+
               // Hiding the invite card and showing the name card
               $("#inviteCard").hide('fadeOutLeft');
               $("#nameCard").show();
@@ -112,7 +107,14 @@ function addUsertoTree() {
   db.collection("partyTree").doc(userName.value).set(newUser).then(function() {
     console.log("New user document created in the partyTree collection");
   });
-
+  // Updating times used since it was just used once
+  // db.collection("partyTree").doc(parent).update({
+  //     timesUsed: doc.data().timesUsed + 1,
+  //   })
+  //   .then(function() {
+  //     console.log("Times Used field updated...");
+  //   });
+  //
   // 6.) Adding new node in the realtime database with the name of the user and the parent of node
   firebase.database().ref(userName.value).set({
     parent: parent,
