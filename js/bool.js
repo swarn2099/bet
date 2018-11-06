@@ -66,6 +66,13 @@ function checkInviteCode() {
              style: 'border-radius: 25px;'
            });
           }
+          else{
+            M.toast({
+             html: 'Uh-Oh, this invite code seems to be invalid',
+             classes: 'red white-text',
+             style: 'border-radius: 25px;'
+           });
+          }
         })
       })
     .catch(function(error) {
