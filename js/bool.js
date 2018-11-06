@@ -1,114 +1,122 @@
-var docRef = db.collection("eligibleCode").doc("party1");
-var array;
+// party1 is path to the eligibleCode collection
+var party1 = db.collection("eligibleCode").doc("party1");
+// Setting inviteCodeArray equal to the allowed array[] in party1 document
+// userInputCode is to get the code the user inputs onto the site
+// parent var is for the prent path to be used in the real time database
+// newcode var is to generate the new invite code and convert the number to string
 
+var inviteCodeArray, userInputCode, parent, newcode;
+
+/*
+ Document ready => ()
+  Hide 3 cards
+ */
 $(document).ready(function() {
-  console.log("ready!");
+  console.log("Document loaded and hide 3 cards");
   $("#nameCard").hide();
   $("#inviteOthers").hide();
   $("#tree").hide();
-  const isIos = () => {
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    return /iphone|ipad|ipod/.test(userAgent);
-  }
-  // Detects if device is in standalone mode
-  const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-
-  // Checks if should display install popup notification:
-  if (isIos() && !isInStandaloneMode()) {
-    this.setState({
-      showInstallMessage: true
-    });
-  }
-
 });
 
+/* Function to check invite code => checkInviteCode()
+--------------------------------------------------------------------------------
+   1.) Get the code enetered by the user in var userInputCode
+   2.) Finds the user whose code was just used
+   3a.) If the user was found AND the code has been used less than 2 times
+            ()=>{
+              => This guy is the parent so setting parent var to his name
+              => Updating times used since it was just used once
+              => Hiding the invite card and showing the name card
+            }
+   3b.) Else code was used more than 2 times so display error message
 
+
+   --------------------------END OF FUNCTION------------------------------------
+*/
 function checkInviteCode() {
-  var code = document.getElementById('invite_code');
-  docRef.get().then(function(doc) {
-    if (doc.exists) {
-      var lol = doc.data().allowed.includes(code.value);
-      if (lol) {
-        console.log("it exsists");
-        $("#inviteCard").hide('fadeOutLeft');
-        $("#nameCard").show();
-      } else {
-        console.log("it doesnt");
-        M.toast({
-          html: 'Uh-Oh, that invite code is invalid',
-          classes: 'red white-text'
-        });
-      }
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-  }).catch(function(error) {
-    console.log("Error getting document:", error);
-  });
+  // 1.) Get the code enetered by the user in var userInputCode
+  userInputCode = document.getElementById('invite_code');
+
+  // 2.) Finds the user whose code was just used
+  db.collection("partyTree").where("myCode", "==", userInputCode.value).get().then(
+      function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          // 3a.) If the user was found AND the code has been used less than 3 times
+          if (doc.data().timesUsed < 2) {
+            console.log("Code is valid");
+            //This guy is the parent so setting parent var to his name
+            parent = doc.data().name;
+            console.log("Parent => ", parent);
+            // Updating times used since it was just used once
+            db.collection("partyTree").doc(parent).update({
+                timesUsed: doc.data().timesUsed + 1,
+              })
+              .then(function() {
+                console.log("Times Used field updated...");
+              });
+            // Hiding the invite card and showing the name card
+            $("#inviteCard").hide('fadeOutLeft');
+            $("#nameCard").show();
+          }
+          // 3b.) Code was used more than 2 times so display error message
+          else if( doc.data().timesUsed >= 2){
+            M.toast({
+             html: 'Uh-Oh, this invite code has already been used more than 2 times',
+             classes: 'red white-text',
+             style: 'border-radius: 25px;'
+           });
+          }
+        })
+      })
+    .catch(function(error) {
+      console.log("Error getting documents: ", error);
+    });
 }
+
+/* Function to add user to tree => addUsertoTree()
+--------------------------------------------------------------------------------
+   1.) Get user name entered in the site into userName
+   2.) Generate new code and convert to string into newcode var
+   3.) Push new invite code to inviteCodeArray[]
+   4.) Updating allowed array[] in party1 document
+   5.) New user object stored in newUser and added to the party tree collection
+   6.) Adding new node in the realtime database with the name of the user and the parent of node
+   7.) Display new code on the invite others card
+   8.) Hide name card and show inviteOthers and tree card
+*/
 
 function addUsertoTree() {
-  var newcode = Math.floor(Math.random() * 90000) + 10000;
-  var code = document.getElementById('invite_code');
-  var name = document.getElementById('name');
-  console.log(name.value);
-  var docData = {
-    invitedBy: code.value,
-    code: newcode,
+  // 1.) Get user name entered in the site
+  var userName = document.getElementById('name');
+  // 2.) Generate new code and convert to string
+  newcode = Math.floor(Math.random() * 90000) + 10000;
+  newcode = newcode.toString();
+
+  // 5.) New user document object for firestore document
+  var newUser = {
+    invitedBy: parent,
+    myCode: newcode,
+    name: userName.value,
+    timesUsed: 0,
   };
-  db.collection("partyTree").doc(name.value).set(docData).then(function() {
-    console.log("Document successfully written!");
+  // Add new user to the party tree collection in firestore
+  db.collection("partyTree").doc(userName.value).set(newUser).then(function() {
+    console.log("New user document created in the partyTree collection");
   });
-  $("#nameCard").hide("slow");
-  $("#inviteOthers").show("slow");
+
+  // 6.) Adding new node in the realtime database with the name of the user and the parent of node
+  firebase.database().ref(userName.value).set({
+    parent: parent,
+    text: {
+      name: userName.value
+    }
+  });
+
+  // 7.)  Display new code on the invite others card
   document.getElementById('myCode').innerHTML += '<h4><span class="heavy-text"><b>' + newcode + '</b></span></h4>';
 
+  // 8.) Hide name card and show inviteOthers and tree card
+  $("#nameCard").hide("slow");
+  $("#inviteOthers").show("slow");
   $("#tree").show("slow")
 }
-
-
-function copyToClipboard() {
-  //   var str = "link";
-  // var result = str.link("https://swarn2099.github.io/bet");
-  // var $temp = $("<input>");
-  // $("body").append($temp);
-  //
-  //  $temp.val('Hey there, you have been invited to a party. Go to swarn2099.github.io/bet and enter the following invite code to confirm your spot: '+ $('#myCode').text()).select();
-  //
-  // document.execCommand("copy");
-  // $temp.remove();
-  //   alert("Your code has been copied. Just paste it in the messaging app of you choice and send it. Remeber you only get 2 invited." );
-
-  navigator.clipboard.writeText('Hey there, you have been invited to a party. Go to swarn2099.github.io/bet and enter the following invite code to confirm your spot:')
-    .then(() => {
-      console.log('Text copied to clipboard');
-    })
-    .catch(err => {
-      // This can happen if the user denies clipboard permissions:
-      console.error('Could not copy text: ', err);
-    });
-
-}
-
-// function share() {
-//   /* Get the text field */
-//   var $temp = $("<input>");
-// $("body").append($temp);
-// $temp.val($(element).text()).select();
-// document.execCommand("copy");
-// $temp.remove();
-//
-//   var str = "link";
-// var result = str.link("https://swarn2099.github.io/bet");
-//   var copyText = 'Hey there,' + name.value + ' has invited you to a party. Enter the folloring invite code at this '+result+' to confirm your spot:'+ document.getElementById("myCode");
-//
-//   /* Select the text field */
-//   copyText.select();
-//
-//   /* Copy the text inside the text field */
-//   document.execCommand("copy");
-//
-//   /* Alert the copied text */
-//   alert("Copied the text: " + copyText.value);
-// }
