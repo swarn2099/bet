@@ -40,40 +40,42 @@ function checkInviteCode() {
   // 2.) Finds the user whose code was just used
   db.collection("partyTree").where("myCode", "==", userInputCode.value).get().then(
       function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          // 3a.) If the user was found AND the code has been used less than 3 times
-          if (doc.data().timesUsed < 2) {
-            console.log("Code is valid");
-            //This guy is the parent so setting parent var to his name
-            parent = doc.data().name;
-            console.log("Parent => ", parent);
-            // Updating times used since it was just used once
-            db.collection("partyTree").doc(parent).update({
-                timesUsed: doc.data().timesUsed + 1,
-              })
-              .then(function() {
-                console.log("Times Used field updated...");
-              });
-            // Hiding the invite card and showing the name card
-            $("#inviteCard").hide('fadeOutLeft');
-            $("#nameCard").show();
-          }
-          // 3b.) Code was used more than 2 times so display error message
-          else if( doc.data().timesUsed >= 2){
-            M.toast({
-             html: 'Uh-Oh, this invite code has already been used more than 2 times',
-             classes: 'red white-text',
-             style: 'border-radius: 25px;'
-           });
-          }
-          else{
-            M.toast({
-             html: 'Uh-Oh, this invite code seems to be invalid',
-             classes: 'red white-text',
-             style: 'border-radius: 25px;'
-           });
-          }
-        })
+        if(querySnapshot.exsists){
+          querySnapshot.forEach(function(doc) {
+            // 3a.) If the user was found AND the code has been used less than 3 times
+            if (doc.data().timesUsed < 2) {
+              console.log("Code is valid");
+              //This guy is the parent so setting parent var to his name
+              parent = doc.data().name;
+              console.log("Parent => ", parent);
+              // Updating times used since it was just used once
+              db.collection("partyTree").doc(parent).update({
+                  timesUsed: doc.data().timesUsed + 1,
+                })
+                .then(function() {
+                  console.log("Times Used field updated...");
+                });
+              // Hiding the invite card and showing the name card
+              $("#inviteCard").hide('fadeOutLeft');
+              $("#nameCard").show();
+            }
+            // 3b.) Code was used more than 2 times so display error message
+            else if( doc.data().timesUsed >= 2){
+              M.toast({
+               html: 'Uh-Oh, this invite code has already been used more than 2 times',
+               classes: 'red white-text',
+               style: 'border-radius: 25px;'
+             });
+            }
+          })
+        }else{
+          M.toast({
+           html: 'Uh-Oh, this invite code seems to be invalid',
+           classes: 'red white-text',
+           style: 'border-radius: 25px;'
+         });
+       }
+
       })
     .catch(function(error) {
       console.log("Error getting documents: ", error);
