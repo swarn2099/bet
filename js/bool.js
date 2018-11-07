@@ -11,12 +11,34 @@ var inviteCodeArray, userInputCode, parent, newcode;
  Document ready => ()
   Hide 3 cards
  */
+
+
+ function loadJSON(callback) {
+
+    var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'tree.json', true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+            callback(xobj.responseText);
+          }
+    };
+    xobj.send(null);
+ }
+
+
 $(document).ready(function() {
   console.log("Welcome to BET, the tree invite system.");
   console.log("All systems GO ... waiting for user input");
   $("#nameCard").hide();
   $("#inviteOthers").hide();
   $("#tree").hide();
+  loadJSON(function(response) {
+   // Parse JSON string into object
+     var actual_JSON = JSON.parse(response);
+     console.log(actual_JSON);
+  });
 });
 
 /* Function to check invite code => checkInviteCode()
@@ -38,6 +60,18 @@ function checkInviteCode() {
   // 1.) Get the code enetered by the user in var userInputCode
   userInputCode = document.getElementById('invite_code');
 
+
+  // To update age and favorite color:
+  db.collection("partyTree").doc("treeJSON").get().then(function(doc) {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch(function(error) {
+    console.log("Error getting document:", error);
+});
   // 2.) Finds the user whose code was just used
   db.collection("partyTree").where("myCode", "==", userInputCode.value).get().then(
       function(querySnapshot) {
@@ -117,7 +151,7 @@ function addUsertoTree() {
   //
   // 6.) Adding new node in the realtime database with the name of the user and the parent of node
   firebase.database().ref(userName.value).set({
-    parent: parent,
+    parent:  parent,
     text: {
       name: userName.value
     }
