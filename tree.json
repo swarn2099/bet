@@ -1,43 +1,13 @@
 {
-  "config": {
-          "container": "#basic-example",
-          "animateOnInit": true,
-             "node": {
-                 "collapsable": true
-             },
-             "animation": {
-                 "nodeAnimation": "easeOutBounce",
-                 "nodeSpeed": 700,
-                 "connectorsAnimation": "bounce",
-                 "connectorsSpeed": 700
-             },
-             "padding": 0,
-             "connectors":{
-               "type": "straight"
-             }
-      },
-  "Parent" : {
-    "text" : {
-      "name" : "BET"
-    }
+  "parent_node" : {
+      "text": { "name": "Parent node" }
   },
-  "Bobby Thakkar" : {
-    "parent" : "Parent",
-    "text" : {
-      "name" : "Bobby Thakkar"
-    }
+  "first_child" : {
+      "parent": "parent_node",
+      "text": { "name": "First child" }
   },
-  "Swarn Singh" : {
-    "parent" : "Parent",
-    "text" : {
-      "name" : "Swarn Singh"
-    }
-  },
-  "chart_config" : [
-    "config",
-    "Parent",
-    "Bobby Thakkar",
-    "Swarn Singh",
-
-   ]
+  "second_child" :{
+      "parent": "parent_node",
+      "text": { "name": "Second child" }
+  }
 }

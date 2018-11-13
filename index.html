@@ -23,7 +23,7 @@
   <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/animate.css" media="screen,projection" />
 
-  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
   <script>
     // Initialize Firebase
     var config = {
@@ -35,6 +35,11 @@
       messagingSenderId: "946416884817"
     };
     firebase.initializeApp(config);
+    const settings = {
+      timestampsInSnapshots: true
+    };
+
+    firebase.firestore().settings(settings);
     var db = firebase.firestore();
   </script>
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -52,9 +57,9 @@
   <body>
     <div class="container">
       <div style="padding-top: 15%; font-weight: 900px;">
-        <h1 class="white-text  center"><b>B E T</b></h1>
+        <h1 class="white-text  center"><b>TOAST</b></h1>
         <!-- <hr color="white" /> -->
-        <h5 class="white-text heavy center"><b>P A R T Y &nbsp &nbsp S E R I E S</b></h5>
+        <!-- <h5 class="white-text heavy center"><b>P A R T Y &nbsp I N V I T E <br> S Y S T E M </b></h5> -->
         <!-- <hr color="white" /> -->
       </div>
       <div class="col s12 animated pulse  slower delay-1s" style="padding-top: 30%;" id="inviteCard">
@@ -129,28 +134,23 @@
 
 
   <div class="col s12 animated fadeInUp delay-1s" style="padding-top: 5%;" id="nameCard">
-  <img class="responsive-img" src="img/tv.gif">
-  <div class="card cardRoundedLess white hoverable  z-depth-5 " style="margin-top: -50px;">
-    <h5 class="black-text" style="font-weight: 900; padding-top: 5px;">&nbsp Episode 1</h5>
-    <h4 class="black-text" style="font-weight: 500;">&nbsp Let's Get this Bread</h4>
-    <div class="card-content black-text">
-      <div class="row">
-        A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is more loosely defined as a sort of battlecry in a sense, calling upon the will of the person(s) to
-        succeed, not necessarily in just gaining monetary funds. It may also be taken more literally as well, as the loaf of bread (or any bread in general) can be a very powerful symbol and source of hype for a crowd.
+    <img class="responsive-img" src="img/tv.gif">
+    <div class="card cardRoundedLess white hoverable  z-depth-5 " style="margin-top: -50px;">
+      <h5 class="black-text" style="font-weight: 900; padding-top: 5px;">&nbsp Episode 1</h5>
+      <h4 class="black-text" style="font-weight: 500;">&nbsp Let's Get this Bread</h4>
+      <div class="card-content black-text">
+        <div class="row">
+          A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is more loosely defined as a sort of battlecry in a sense, calling upon the will of the person(s) to
+          succeed, not necessarily in just gaining monetary funds. It may also be taken more literally as well, as the loaf of bread (or any bread in general) can be a very powerful symbol and source of hype for a crowd.
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
 
-<div class="col s12 animated fadeInUp delay-1s" id="tree">
-  <div class="card white center hoverable z-depth-5">
-    <div class="card-content black-text">
-      <div class="chart" id="basic-example"></div>
+<div class="chart" id="basic-example"></div>
 
-    </div>
-  </div>
-</div>
+
 
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
@@ -174,9 +174,61 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script src="vendor/raphael.js"></script>
 <script src="js/Treant.js"></script>
-
 <script src="js/tree.js"></script>
 <script>
-    new Treant( chart_config );
+var arr = [];
+var treeArray = [];
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      const parsedJson = JSON.parse(this.responseText);
+      var config = {
+          container: "#basic-example",
+
+          connectors: {
+            type: 'step'
+          },
+          node: {
+            HTMLclass: 'nodeExample1'
+          }
+        };
+      var Parent = {
+        text: {
+          name: "Parent"
+        }
+      };
+
+
+
+      arr.push(Parent);
+      treeArray.push(Parent);
+
+      Object.keys(parsedJson).map((key) => arr.push(parsedJson[key]));
+
+      for (var i = 1; i < arr.length; i++) {
+        var j = 0;
+        while (arr[i].parent != arr[j].text.name) {
+          j++;
+        }
+        var newObj = {
+          parent: {
+            text: arr[j].text
+          },
+          text: arr[i].text
+        };
+        treeArray.push(newObj);
+      }
+      treeArray.push(config);
+      console.log(treeArray);
+
+    }
+    new Treant(treeArray);
+
+  };
+  xmlhttp.open("GET", "https://api.myjson.com/bins/1dx4va", true);
+  xmlhttp.send();
+  console.log(treeArray);
 </script>
+
+
 </html>

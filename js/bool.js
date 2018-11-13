@@ -1,20 +1,15 @@
-// party1 is path to the eligibleCode collection
+/*party1 is path to the eligibleCode collection
+Setting inviteCodeArray equal to the allowed array[] in party1 document
+userInputCode is to get the code the user inputs onto the site
+parent var is for the prent path to be used in the real time database
+newcode var is to generate the new invite code and convert the number to string
 var party1 = db.collection("eligibleCode").doc("party1");
-// Setting inviteCodeArray equal to the allowed array[] in party1 document
-// userInputCode is to get the code the user inputs onto the site
-// parent var is for the prent path to be used in the real time database
-// newcode var is to generate the new invite code and convert the number to string
-
-var inviteCodeArray, userInputCode, parent, newcode;
+var inviteCodeArray, userInputCode, parent, newcode;*/
 
 /*
  Document ready => ()
   Hide 3 cards
  */
-
-
-
-
 
 $(document).ready(function() {
   console.log("Welcome to BET, the tree invite system.");
@@ -22,9 +17,6 @@ $(document).ready(function() {
   $("#nameCard").hide();
   $("#inviteOthers").hide();
   $("#tree").hide();
-  $.getJSON( "tree.json", function( json ) {
-    console.log( "JSON Data received, name is " + json.name);
-});
 });
 
 /* Function to check invite code => checkInviteCode()
@@ -50,18 +42,18 @@ function checkInviteCode() {
   // To update age and favorite color:
   db.collection("partyTree").doc("treeJSON").get().then(function(doc) {
     if (doc.exists) {
-        console.log("Document data:", doc.data());
+      console.log("Document data:", doc.data());
     } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
     }
-}).catch(function(error) {
+  }).catch(function(error) {
     console.log("Error getting document:", error);
-});
+  });
   // 2.) Finds the user whose code was just used
   db.collection("partyTree").where("myCode", "==", userInputCode.value).get().then(
       function(querySnapshot) {
-        if(querySnapshot){
+        if (querySnapshot) {
           querySnapshot.forEach(function(doc) {
             // 3a.) If the user was found AND the code has been used less than 3 times
             if (doc.data().timesUsed < 2) {
@@ -75,21 +67,21 @@ function checkInviteCode() {
               $("#nameCard").show();
             }
             // 3b.) Code was used more than 2 times so display error message
-            else if( doc.data().timesUsed >= 2){
+            else if (doc.data().timesUsed >= 2) {
               M.toast({
-               html: 'Uh-Oh, this invite code has already been used more than 2 times',
-               classes: 'red white-text',
-               style: 'border-radius: 25px;'
-             });
+                html: 'Uh-Oh, this invite code has already been used more than 2 times',
+                classes: 'red white-text',
+                style: 'border-radius: 25px;'
+              });
             }
           })
-        }else{
+        } else {
           M.toast({
-           html: 'Uh-Oh, this invite code seems to be invalid',
-           classes: 'red white-text',
-           style: 'border-radius: 25px;'
-         });
-       }
+            html: 'Uh-Oh, this invite code seems to be invalid',
+            classes: 'red white-text',
+            style: 'border-radius: 25px;'
+          });
+        }
 
       })
     .catch(function(error) {
@@ -137,7 +129,7 @@ function addUsertoTree() {
   //
   // 6.) Adding new node in the realtime database with the name of the user and the parent of node
   firebase.database().ref(userName.value).set({
-    parent:  parent,
+    parent: parent,
     text: {
       name: userName.value
     }
