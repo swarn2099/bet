@@ -29,14 +29,15 @@ citiesRef.orderBy("order").get().then(function(querySnapshot) {
       if(pos == -1){
         pos = 0;
       }
-      console.log("Current Person: ", arr[i].name, " => Current order: ", arr[i].order, "Person to look for: ", arr[pos].name, " => Order to look for: ", find)
+      console.log("Even => Current Person: ", arr[i].name, " => Current order: ", arr[i].order, "Person to look for: ", arr[pos].name, " => Order to look for: ", find)
 
       console.log("Position in array: ", pos, "Current Status of children at pos: ", arr[pos].children);
 
         var r = arr[pos].children;
-        r = r[0];
-        console.log("r is: ", r)
+        r = r[1];
         r.children = arr[i].children;
+
+        console.log("r is: ", r)
     }
     // if (i  % 2 == 1) {
     //   // console.log("This is where the current array should go into: ", arr[(i / 2) - 1].children[1]);
@@ -67,17 +68,17 @@ var finalText = localStorage.getItem('textF');
 var chart_config = {
   chart: {
     container: "#basic-example",
-    levelSeparation: 5,
-    siblingSeparation: 5,
-    subTeeSeparation: 5,
-    // nodeAlign: "TOP",
+    levelSeparation: 15,
+    siblingSeparation: 12,
+    subTeeSeparation: 12,
+    nodeAlign: "TOP",
     connectors: {
-      type: 'step'
+      type: 'bCurve'
     },
-    animateOnInit: true,
+    // animateOnInit: true,
 
     node: {
-      collapsable: true
+      collapsable: false
     },
     animation: {
       nodeAnimation: "easeOutBounce",

@@ -10,11 +10,11 @@ html {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 }
-.Treant > .node { padding: 10px; border: 1px solid #484848; border-radius: 10px; }
+.Treant > .node { background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);color: white; padding: 5px; border: 1px solid #484848; border-radius: 20px; }
 
 .Treant .collapse-switch { width: 100%; height: 100%; border: none; }
 .Treant .node.collapsed { background-color: #DEF82D; }
-.Treant .node.collapsed .collapse-switch { background: none; }
+.Treant .node.collapsed .collapse-switch { background: red; }
 
 header {
   position: relative;
