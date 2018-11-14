@@ -22,7 +22,7 @@
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/animate.css" media="screen,projection" />
-
+  <link type="text/css" rel="stylesheet" href="css/Treant.css" media="screen,projection" />
   <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -45,22 +45,16 @@
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/init.js"></script>
   <script type="text/javascript" src="js/bool.js"></script>
-
-
 </head>
-<header class="header2">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
- <polygon class="svg--lg" fill="white" points="0,0 30,100 65,21 90,100 100,75 100,100 0,100"/>
- <polygon class="svg--lg" fill="white" points="0,0 15,100 33,21 45,100 50,75 55,100 72,20 85,100 95,50 100,80 100,100 0,100" />
-</svg>
 
   <body>
+    <header>
     <div class="container">
       <div style="padding-top: 15%; font-weight: 900px;">
-        <h1 class="white-text  center"><b>TOAST</b></h1>
-        <!-- <hr color="white" /> -->
-        <!-- <h5 class="white-text heavy center"><b>P A R T Y &nbsp I N V I T E <br> S Y S T E M </b></h5> -->
-        <!-- <hr color="white" /> -->
+        <h1 class="white-text  center"><b>B E T</b></h1>
+        <hr color="white" />
+        <h6 class="white-text heavy center"><b>P A R T Y &nbsp I N V I T E &nbsp S Y S T E M </b></h6>
+        <hr color="white" />
       </div>
       <div class="col s12 animated pulse  slower delay-1s" style="padding-top: 30%;" id="inviteCard">
         <div class="card  white hoverable center z-depth-5 	" style="margin-top: -50px;">
@@ -80,7 +74,6 @@
           </div>
         </div>
       </div>
-
       <div class="container">
         <div class="col s12 animated fadeInRight delay-1s" style="padding-top: 30%;" id="nameCard">
           <div class="card white hoverable center z-depth-5 " style="margin-top: -50px;">
@@ -124,15 +117,11 @@
             </div>
           </div>
         </div>
-
 </header>
 
 
-
+<section>
 <div class="container">
-
-
-
   <div class="col s12 animated fadeInUp delay-1s" style="padding-top: 5%;" id="nameCard">
     <img class="responsive-img" src="img/tv.gif">
     <div class="card cardRoundedLess white hoverable  z-depth-5 " style="margin-top: -50px;">
@@ -145,11 +134,20 @@
         </div>
       </div>
     </div>
+  </div><br><br>
+  <div class="col s12 animated fadeInUp delay-1s" id="nameCard">
+    <div class="card cardRoundedLess white hoverable  z-depth-5 ">
+      <div class="chart" id="basic-example" style="height: 300px;"></div>
+    </div>
   </div>
 </div>
+</section>
 
-<div class="chart" id="basic-example"></div>
+<script src="vendor/raphael.js"></script>
+<script src="vendor/jquery.min.js"></script>
+   <script src="vendor/jquery.easing.js"></script>
 
+<script src="js/Treant.js"></script>
 
 
 <!-- Modal Structure -->
@@ -171,64 +169,11 @@
   </div>
 </div>
 </body>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script src="vendor/raphael.js"></script>
-<script src="js/Treant.js"></script>
 <script src="js/tree.js"></script>
 <script>
-var arr = [];
-var treeArray = [];
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      const parsedJson = JSON.parse(this.responseText);
-      var config = {
-          container: "#basic-example",
-
-          connectors: {
-            type: 'step'
-          },
-          node: {
-            HTMLclass: 'nodeExample1'
-          }
-        };
-      var Parent = {
-        text: {
-          name: "Parent"
-        }
-      };
-
-
-
-      arr.push(Parent);
-      treeArray.push(Parent);
-
-      Object.keys(parsedJson).map((key) => arr.push(parsedJson[key]));
-
-      for (var i = 1; i < arr.length; i++) {
-        var j = 0;
-        while (arr[i].parent != arr[j].text.name) {
-          j++;
-        }
-        var newObj = {
-          parent: {
-            text: arr[j].text
-          },
-          text: arr[i].text
-        };
-        treeArray.push(newObj);
-      }
-      treeArray.push(config);
-      console.log(treeArray);
-
-    }
-    new Treant(treeArray);
-
-  };
-  xmlhttp.open("GET", "https://api.myjson.com/bins/1dx4va", true);
-  xmlhttp.send();
-  console.log(treeArray);
+ new Treant(chart_config);
 </script>
 
+<script type="text/javascript" src="js/materialize.js"></script>
 
 </html>

@@ -1,151 +1,67 @@
-var config = {
-    container: "#basic-example",
+var arr = [];
+var citiesRef = db.collection("partyTree");
+citiesRef.orderBy("order").get().then(function(querySnapshot) {
+  querySnapshot.forEach(function(doc) {
+    // console.log(doc.id, " => ", doc.data());
+    arr.push(doc.data());
+  });
+  // console.log(arr);
+  for (var i = arr.length - 1; i > 0; i--) {
+    // console.log("i is: ", i);
+    // console.log("This is the current array: ", arr[i].children);
+    // console.log("i / 2 is: ", Math.floor(i / 2));
 
+    if ((i + 1) % 2 == 1) {
+      // console.log("This is where the current array should go into: ", arr[(i / 2) - 1].children[1]);
+      var r = arr[(i / 2) - 1].children;
+      r = r[1];
+      // console.log("r is: ", r)
+      r.children = arr[i].children;
+    } else {
+      // console.log("This is where the current array should go into: ", arr[Math.floor(i / 2)].children[0]);
+      var r = arr[Math.floor(i / 2)].children;
+      r = r[0];
+      // console.log("r is: ", r)
+      r.children = arr[i].children;
+
+    }
+  }
+  // console.log("FINAL ARR AFTER PUSHES");
+  // console.log(arr);
+  var tree = arr[0].children;
+  var text = arr[0].name;
+  localStorage.setItem('treeF', JSON.stringify(tree));
+  localStorage.setItem('textF', text);
+});
+var finalTree = JSON.parse(localStorage.getItem('treeF'));
+var finalText = localStorage.getItem('textF');
+
+var chart_config = {
+  chart: {
+    container: "#basic-example",
+    levelSeparation: 5,
+    siblingSeparation: 5,
+    subTeeSeparation: 5,
+    // nodeAlign: "TOP",
     connectors: {
       type: 'step'
     },
+    animateOnInit: true,
+
     node: {
-      HTMLclass: 'nodeExample1'
+      collapsable: true
+    },
+    animation: {
+      nodeAnimation: "easeOutBounce",
+      nodeSpeed: 700,
+      connectorsAnimation: "bounce",
+      connectorsSpeed: 700
     }
   },
-  ceo = {
+  nodeStructure: {
     text: {
-      name: "Mark Hill"
-    }
-  },
-
-  cto = {
-    parent: ceo,
-    text: {
-      name: "Joe Linux"
-    }
-  },
-  cbo = {
-    parent: ceo,
-    text: {
-      name: "Linda May"
-    }
-  },
-  cdo = {
-    parent: ceo,
-    text: {
-      name: "John Green"
-    }
-  },
-
-  chart_config = [
-    cto,
-    cbo,
-    cdo,
-    ceo,
-    config,
-  ];
-console.log(chart_config);
-
-
-
-// Antoher approach, same result
-// JSON approach
-
-/*
-    var chart_config = {
-        chart: {
-            container: "#basic-example",
-
-            connectors: {
-                type: 'step'
-            },
-            node: {
-                HTMLclass: 'nodeExample1'
-            }
-        },
-        nodeStructure: {
-            text: {
-                name: "Mark Hill",
-                title: "Chief executive officer",
-                contact: "Tel: 01 213 123 134",
-            },
-            image: "../headshots/2.jpg",
-            children: [
-                {
-                    text:{
-                        name: "Joe Linux",
-                        title: "Chief Technology Officer",
-                    },
-                    stackChildren: true,
-                    image: "../headshots/1.jpg",
-                    children: [
-                        {
-                            text:{
-                                name: "Ron Blomquist",
-                                title: "Chief Information Security Officer"
-                            },
-                            image: "../headshots/8.jpg"
-                        },
-                        {
-                            text:{
-                                name: "Michael Rubin",
-                                title: "Chief Innovation Officer",
-                                contact: "we@aregreat.com"
-                            },
-                            image: "../headshots/9.jpg"
-                        }
-                    ]
-                },
-                {
-                    stackChildren: true,
-                    text:{
-                        name: "Linda May",
-                        title: "Chief Business Officer",
-                    },
-                    image: "../headshots/5.jpg",
-                    children: [
-                        {
-                            parent: cbo,
-                            text:{
-                                name: "Alice Lopez",
-                                title: "Chief Communications Officer"
-                            },
-                            image: "../headshots/7.jpg"
-                        },
-                        {
-                            text:{
-                                name: "Mary Johnson",
-                                title: "Chief Brand Officer"
-                            },
-                            image: "../headshots/4.jpg"
-                        },
-                        {
-                            text:{
-                                name: "Kirk Douglas",
-                                title: "Chief Business Development Officer"
-                            },
-                            image: "../headshots/11.jpg"
-                        }
-                    ]
-                },
-                {
-                    text:{
-                        name: "John Green",
-                        title: "Chief accounting officer",
-                        contact: "Tel: 01 213 123 134",
-                    },
-                    image: "../headshots/6.jpg",
-                    children: [
-                        {
-                            text:{
-                                name: "Erica Reel",
-                                title: "Chief Customer Officer"
-                            },
-                            link: {
-                                href: "http://www.google.com"
-                            },
-                            image: "../headshots/10.jpg"
-                        }
-                    ]
-                }
-            ]
-        }
-    };
-
-*/
+      name: finalText
+    },
+    children: finalTree
+  }
+};

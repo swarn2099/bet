@@ -1,55 +1,36 @@
-button{
+button {
   border-radius: 25px;
 }
-
-/* .color-page2 {
-  background: linear-gradient(45deg, #000000, #051937, #ff0000 );
-  position: relative;
-  animation: pastelRainbow 15s ease infinite;
-  background-size: 400% 400%;
-} */
 
 html {
   font-family: 'helvetica';
   overflow-x: hidden;
-  background-color: #fff;
+  */ background-color: #fff;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 }
-.header2 {
-   position: relative;
-   height: -1000px;
-   background: linear-gradient(0deg, #2edcd7 0%, #141b65 100%);
- }
 
-    svg {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 50px;
-    }
 
-    @media (max-width: 699px) {
-      .svg--lg {
-        /* display: none; */
-      }
-    }
+header {
+  position: relative;
+  height: 550px;
+  padding-bottom: 100px;
+  background: linear-gradient(0deg, #2edcd7 0%, #141b65 100%);
+  border-bottom-left-radius: 90% 30%;
+  border-bottom-right-radius: 90% 30%;
+}
 
-    @media (min-width: 700px) {
-      .svg--sm {
-        display: none;
-      }
-    }
-.card{
+
+
+.card {
   border-radius: 25px;
   padding: 0px;
 }
-.modal{
+
+.modal {
   border-radius: 20px;
 }
-
-
 
 @keyframes pastelRainbow {
   0% {

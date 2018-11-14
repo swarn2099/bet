@@ -12,11 +12,12 @@ var inviteCodeArray, userInputCode, parent, newcode;*/
  */
 
 $(document).ready(function() {
-  console.log("Welcome to BET, the tree invite system.");
-  console.log("All systems GO ... waiting for user input");
+  // console.log("Welcome to BET, the tree invite system.");
+  // console.log("All systems GO ... waiting for user input");
   $("#nameCard").hide();
   $("#inviteOthers").hide();
   $("#tree").hide();
+
 });
 
 /* Function to check invite code => checkInviteCode()
