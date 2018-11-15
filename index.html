@@ -16,8 +16,9 @@
   <link href="img/apple_splash_1125.png" sizes="1125x2436" rel="apple-touch-startup-image" />
   <link href="img/apple_splash_1242.png" sizes="1242x2208" rel="apple-touch-startup-image" />
   <link href="img/apple_splash_750.png" sizes="750x1334" rel="apple-touch-startup-image" />
-  <title>Home | BET</title>
+  <title>Home | BIT</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   <link rel="stylesheet" href="css/Treant.css">
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
@@ -45,44 +46,64 @@
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/init.js"></script>
   <script type="text/javascript" src="js/bool.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
 </head>
 
 <body>
   <header>
-    <div class="container">
-      <div style="padding-top: 15%; font-weight: 900px;">
-        <h1 class="white-text  center"><b>B E T</b></h1>
-        <hr color="white" />
-        <h6 class="white-text heavy center"><b>P A R T Y &nbsp I N V I T E &nbsp S Y S T E M </b></h6>
-        <hr color="white" />
-      </div>
-      <div class="col s12 animated fadeInRight delay-1s" style="padding-top: 30%;" id="inviteCard">
-        <div class="card  white hoverable center z-depth-5 	" style="margin-top: -50px;">
+    <div style="padding-top: 15%; font-weight: 900px;">
+      <h1 class="white-text  center"><b>B  I  T</b></h1>
+      <h6 class="white-text heavy center"><b>The Visual Party Invite System</b></h6>
+    </div>
+    <br>
+    <!-- <div class="container"> -->
+    <div class="carousel">
+      <div class="carousel-item" href="#one!">
+        <div class="card white z-depth-1">
           <div class="card-content black-text">
-            <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Enter Your Code</h5></span>
+            <h5 style="font-weight: 900;">Welcome to BIT</h5> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun
             <div class="row">
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="invite_code" class="validate" type="tel" pattern="[0-9]*" novalidate>
-                    <label for="invite_code">Invite Code</label>
-                  </div>
-                </div>
-            </div>
-            <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">local_bar</i>Let's Party</a><br><br>
-            <a class="blue-text modal-trigger" style="border-radius: 25px;" href="#modal1">Forgot my Code</a>
-            <img class="responsive-img" src="img/tv.gif">
-
-            <h5 class="black-text" style="font-weight: 900; padding-top: 5px;">&nbsp Episode 1</h5>
-            <h4 class="black-text" style="font-weight: 500;">&nbsp Let's Get this Bread</h4>
-              <div class="row">
-                A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is more loosely defined as a sort of battlecry in a sense, calling upon the will of the person(s) to
-                succeed, not necessarily in just gaining monetary funds. It may also be taken more literally as well, as the loaf of bread (or any bread in general) can be a very powerful symbol and source of hype for a crowd.
+              <div class="input-field col s12">
+                <input id="invite_code" class="validate" type="tel" pattern="[0-9]*" novalidate>
+                <label for="invite_code">Enter Invite Code</label>
               </div>
+            </div>
+            <div class="center">
+            <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">local_bar</i>Let's Party</a></div><br><br>
           </div>
         </div>
       </div>
-      <div class="container">
+      <div class="carousel-item" href="#two!">
+        <div class="card white z-depth-1">
+          <div class="card-content black-text">
+            <h5 style="font-weight: 900;">Episode 1</h5>
+            <h5 style="font-weight: 900;">Let's Get This Bread</h5><br>
+            <img class="responsive-img" src="img/tv.gif"><br>
+             A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item " href="#three!">
+        <div class="card white z-depth-1">
+          <div class="card-content black-text">
+            <h4 style="font-weight: 900;">Party Stats</h4><br>
+            <h6>Time till next episode:</h6>
+              <b><p id="demo" class="red-text"></p></b>
+            <h6>Spots remaining in tree: <b><span class="red-text">43</span></b></h6><br><br><br>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+    <div class="col s12 animated fadeInUp delay-1s" id="invite">
+      <div class="card cardRoundedLess white hoverable  z-depth-5 ">
+        <h5 class="black-text" style="font-weight: 900; padding-top: 10px;">&nbsp The Invite List</h5>
+        <div class="chart" id="basic-example" style="height: 500px;"></div>
+      </div>
+    </div>
+    </div>
+    <!-- <div class="container">
         <div class="col s12 animated fadeInRight delay-1s" style="padding-top: 30%;" id="nameCard">
           <div class="card white hoverable center z-depth-5 " style="margin-top: -50px;">
             <div class="card-content black-text">
@@ -129,7 +150,7 @@
 
 
   <section>
-    <!-- <div class="container">
+     <div class="container">
       <div class="col s12 animated fadeInUp delay-1s" style="padding-top: 5%;" id="nameCard">
         <img class="responsive-img" src="img/tv.gif">
         <div class="card cardRoundedLess white hoverable  z-depth-5 " style="margin-top: -50px;">
@@ -142,42 +163,36 @@
             </div>
           </div>
         </div>
-      </div><br><br> -->
-      <div class="col s12 animated fadeInUp delay-1s" id="invite">
-        <div class="card cardRoundedLess white hoverable  z-depth-5 ">
-          <h5 class="black-text" style="font-weight: 900; padding-top: 10px;">&nbsp The Invite List</h5>
-          <div class="chart" id="basic-example" style="height: 500px;"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </div><br><br>
 
-  <script src="vendor/raphael.js"></script>
-  <script src="vendor/jquery.min.js"></script>
-  <script src="vendor/jquery.easing.js"></script>
+  </section> -->
 
-  <script src="js/Treant.js"></script>
+    <script src="vendor/raphael.js"></script>
+    <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/jquery.easing.js"></script>
 
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/Treant.js"></script>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Forgot my Invite Code</h5></span>
-      <hr />
-      <span class="left">Lookup your invite code here to invite your friends. First, enter the code you were invited with below.</span>
-      <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="invite_code" class="validate" type="tel" pattern="[0-9]*" novalidate>
-              <label for="invite_code">Invite Code</label>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Forgot my Invite Code</h5></span>
+        <hr />
+        <span class="left">Lookup your invite code here to invite your friends. First, enter the code you were invited with below.</span>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="invite_code" class="validate" type="tel" pattern="[0-9]*" novalidate>
+                <label for="invite_code">Invite Code</label>
+              </div>
             </div>
-          </div>
+        </div>
+        <a class="waves-effect waves-light btn center cyan" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">arrow_forward</i>Next Step</a><br><br>
       </div>
-      <a class="waves-effect waves-light btn center cyan" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">arrow_forward</i>Next Step</a><br><br>
     </div>
-  </div>
 </body>
 <script src="js/tree.js"></script>
 <script>
