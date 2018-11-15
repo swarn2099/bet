@@ -47,8 +47,8 @@
   <script type="text/javascript" src="js/bool.js"></script>
 </head>
 
-  <body>
-    <header>
+<body>
+  <header>
     <div class="container">
       <div style="padding-top: 15%; font-weight: 900px;">
         <h1 class="white-text  center"><b>B E T</b></h1>
@@ -56,7 +56,7 @@
         <h6 class="white-text heavy center"><b>P A R T Y &nbsp I N V I T E &nbsp S Y S T E M </b></h6>
         <hr color="white" />
       </div>
-      <div class="col s12 animated pulse  slower delay-1s" style="padding-top: 30%;" id="inviteCard">
+      <div class="col s12 animated fadeInRight delay-1s" style="padding-top: 30%;" id="inviteCard">
         <div class="card  white hoverable center z-depth-5 	" style="margin-top: -50px;">
           <div class="card-content black-text">
             <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Enter Your Code</h5></span>
@@ -71,6 +71,14 @@
             </div>
             <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">local_bar</i>Let's Party</a><br><br>
             <a class="blue-text modal-trigger" style="border-radius: 25px;" href="#modal1">Forgot my Code</a>
+            <img class="responsive-img" src="img/tv.gif">
+
+            <h5 class="black-text" style="font-weight: 900; padding-top: 5px;">&nbsp Episode 1</h5>
+            <h4 class="black-text" style="font-weight: 500;">&nbsp Let's Get this Bread</h4>
+              <div class="row">
+                A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is more loosely defined as a sort of battlecry in a sense, calling upon the will of the person(s) to
+                succeed, not necessarily in just gaining monetary funds. It may also be taken more literally as well, as the loaf of bread (or any bread in general) can be a very powerful symbol and source of hype for a crowd.
+              </div>
           </div>
         </div>
       </div>
@@ -117,63 +125,63 @@
             </div>
           </div>
         </div>
-</header>
+  </header>
 
 
-<section>
-<div class="container">
-  <div class="col s12 animated fadeInUp delay-1s" style="padding-top: 5%;" id="nameCard">
-    <img class="responsive-img" src="img/tv.gif">
-    <div class="card cardRoundedLess white hoverable  z-depth-5 " style="margin-top: -50px;">
-      <h5 class="black-text" style="font-weight: 900; padding-top: 5px;">&nbsp Episode 1</h5>
-      <h4 class="black-text" style="font-weight: 500;">&nbsp Let's Get this Bread</h4>
-      <div class="card-content black-text">
-        <div class="row">
-          A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is more loosely defined as a sort of battlecry in a sense, calling upon the will of the person(s) to
-          succeed, not necessarily in just gaining monetary funds. It may also be taken more literally as well, as the loaf of bread (or any bread in general) can be a very powerful symbol and source of hype for a crowd.
+  <section>
+    <!-- <div class="container">
+      <div class="col s12 animated fadeInUp delay-1s" style="padding-top: 5%;" id="nameCard">
+        <img class="responsive-img" src="img/tv.gif">
+        <div class="card cardRoundedLess white hoverable  z-depth-5 " style="margin-top: -50px;">
+          <h5 class="black-text" style="font-weight: 900; padding-top: 5px;">&nbsp Episode 1</h5>
+          <h4 class="black-text" style="font-weight: 500;">&nbsp Let's Get this Bread</h4>
+          <div class="card-content black-text">
+            <div class="row">
+              A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is more loosely defined as a sort of battlecry in a sense, calling upon the will of the person(s) to
+              succeed, not necessarily in just gaining monetary funds. It may also be taken more literally as well, as the loaf of bread (or any bread in general) can be a very powerful symbol and source of hype for a crowd.
+            </div>
+          </div>
+        </div>
+      </div><br><br> -->
+      <div class="col s12 animated fadeInUp delay-1s" id="invite">
+        <div class="card cardRoundedLess white hoverable  z-depth-5 ">
+          <h5 class="black-text" style="font-weight: 900; padding-top: 10px;">&nbsp The Invite List</h5>
+          <div class="chart" id="basic-example" style="height: 500px;"></div>
         </div>
       </div>
     </div>
-  </div><br><br>
-  <div class="col s12 animated fadeInUp delay-1s" id="nameCard">
-    <div class="card cardRoundedLess white hoverable  z-depth-5 ">
-      <h5 class="black-text" style="font-weight: 900; padding-top: 50px;">&nbsp The Invite List</h5>
-      <div class="chart" id="basic-example" style="height: 500px;"></div>
-    </div>
-  </div>
-</div>
-</section>
+  </section>
 
-<script src="vendor/raphael.js"></script>
-<script src="vendor/jquery.min.js"></script>
-   <script src="vendor/jquery.easing.js"></script>
+  <script src="vendor/raphael.js"></script>
+  <script src="vendor/jquery.min.js"></script>
+  <script src="vendor/jquery.easing.js"></script>
 
-<script src="js/Treant.js"></script>
+  <script src="js/Treant.js"></script>
 
-<script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Forgot my Invite Code</h5></span>
-    <hr />
-    <span class="left">Lookup your invite code here to invite your friends. First, enter the code you were invited with below.</span>
-    <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="invite_code" class="validate" type="tel" pattern="[0-9]*" novalidate>
-            <label for="invite_code">Invite Code</label>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Forgot my Invite Code</h5></span>
+      <hr />
+      <span class="left">Lookup your invite code here to invite your friends. First, enter the code you were invited with below.</span>
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="invite_code" class="validate" type="tel" pattern="[0-9]*" novalidate>
+              <label for="invite_code">Invite Code</label>
+            </div>
           </div>
-        </div>
+      </div>
+      <a class="waves-effect waves-light btn center cyan" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">arrow_forward</i>Next Step</a><br><br>
     </div>
-    <a class="waves-effect waves-light btn center cyan" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">arrow_forward</i>Next Step</a><br><br>
   </div>
-</div>
 </body>
 <script src="js/tree.js"></script>
 <script>
- new Treant(chart_config);
+  new Treant(chart_config);
 </script>
 
 
