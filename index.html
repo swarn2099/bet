@@ -58,18 +58,35 @@
     <br>
     <!-- <div class="container"> -->
     <div class="carousel">
+      <div class="carousel-fixed-item middle-indicator">
+        <div class="left">
+          <a href="Previo" class="movePrevCarousel middle-indicator-text content-indicator"><i class="material-icons  middle-indicator-text ">chevron_left</i></a>
+        </div>
+        <div class="right">
+          <a href="Siguiente" class=" moveNextCarousel middle-indicator-text  content-indicator"><i class="material-icons  middle-indicator-text">chevron_right</i></a>
+        </div>
+      </div>
       <div class="carousel-item" href="#one!">
+
         <div class="card white z-depth-1">
+
           <div class="card-content black-text">
-            <h5 style="font-weight: 900;">Welcome to BIT</h5> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun
+            <h5 style="font-weight: 900;">Welcome to BIT</h5>
+            <div class="">
+              BIT or Binary Invite Tree is a new invite system with a unique twist.
+              Enter your code below and click Let's party to get started.
+            </div>
+
             <div class="row">
               <div class="input-field col s12">
                 <input id="invite_code" class="validate" type="tel" pattern="[0-9]*" novalidate>
-                <label for="invite_code">Enter Invite Code</label>
+                <label for="invite_code">Enter invite code</label>
               </div>
             </div>
             <div class="center">
-            <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">local_bar</i>Let's Party</a></div><br><br>
+              <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">local_bar</i>Let's Party</a>
+            </div>
+            <br><br>
           </div>
         </div>
       </div>
@@ -78,8 +95,7 @@
           <div class="card-content black-text">
             <h5 style="font-weight: 900;">Episode 1</h5>
             <h5 style="font-weight: 900;">Let's Get This Bread</h5><br>
-            <img class="responsive-img" src="img/tv.gif"><br>
-             A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is
+            <img class="responsive-img" src="img/tv.gif"><br> A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is
           </div>
         </div>
       </div>
@@ -88,7 +104,7 @@
           <div class="card-content black-text">
             <h4 style="font-weight: 900;">Party Stats</h4><br>
             <h6>Time till next episode:</h6>
-              <b><p id="demo" class="red-text"></p></b>
+            <b><p id="demo" class="red-text"></p></b>
             <h6>Spots remaining in tree: <b><span class="red-text">43</span></b></h6><br><br><br>
 
           </div>
@@ -96,12 +112,12 @@
       </div>
     </div>
     <div class="container">
-    <div class="col s12 animated fadeInUp delay-1s" id="invite">
-      <div class="card cardRoundedLess white hoverable  z-depth-5 ">
-        <h5 class="black-text" style="font-weight: 900; padding-top: 10px;">&nbsp The Invite List</h5>
-        <div class="chart" id="basic-example" style="height: 500px;"></div>
+      <div class="col s12 animated fadeInUp delay-1s" id="invite">
+        <div class="card cardRoundedLess white hoverable  z-depth-5 ">
+          <h5 class="black-text" style="font-weight: 900; padding-top: 10px;">&nbsp The Invite List</h5>
+          <div class="chart" id="basic-example" style="height: 500px;"></div>
+        </div>
       </div>
-    </div>
     </div>
     <!-- <div class="container">
         <div class="col s12 animated fadeInRight delay-1s" style="padding-top: 30%;" id="nameCard">
