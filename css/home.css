@@ -31,13 +31,16 @@ html {
   opacity: 100%;
   max-height: 400px;
 }
-.statCard{
+
+.statCard {
   background-color: #F9BA2F;
 }
-.bread{
+
+.bread {
   background-color: #5087A2;
 }
-.middle-indicator{
+
+.middle-indicator {
   z-index: 99 !important;
 }
 
@@ -53,23 +56,26 @@ a.middle-indicator-text {
   width: 15px;
   height: 15px;
 }
-.content-indicatorLeft{
+
+.content-indicatorLeft {
   position: relative;
   margin-top: 150px;
   border-radius: 30px;
   color: white;
   background-color: #062141;
 }
-.content-indicatorRight{
+
+.content-indicatorRight {
   position: relative;
   margin-top: 150px;
   border-radius: 30px;
   color: white;
   background-color: #062141;
 }
+
 .Treant>.node {
   /* background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%); */
-  background: white
+  background: white;
   color: black;
   padding: 5px;
   border: 1px solid #484848;
@@ -92,19 +98,40 @@ a.middle-indicator-text {
 
 header {
   position: relative;
-  height: 550px;
+  height: 510px;
   /* padding-bottom: 100px; */
   border-radius: 0px 0px 488px 488px;
   background: linear-gradient(180deg, #062141 27.62%, #E2871D 100%), #062141;
+  background-image: 'img/tv.gif';
+}
+
+.treeCard {
+  background-image: linear-gradient(to top, #0250c5 0%, #d43f8d 100%);
+  position: relative;
+  animation: pastelRainbow 30s ease infinite;
+}
+
+@keyframes pastelRainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .card {
   border-radius: 25px;
   /* padding: -10px; */
 }
-.card-content{
+
+.card-content {
   padding: 0px;
 }
+
 .modal {
   border-radius: 20px;
 }
