@@ -10,6 +10,7 @@
       e.preventDefault();
       e.stopPropagation();
       $('.carousel').carousel('next');
+      console.log("Right");
     });
 
     // move prev carousel
@@ -17,6 +18,7 @@
       e.preventDefault();
       e.stopPropagation();
       $('.carousel').carousel('prev');
+      console.log("Left");
     });
     M.updateTextFields();
 

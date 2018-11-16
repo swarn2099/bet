@@ -56,25 +56,21 @@
       <h6 class="white-text heavy center"><b>The Visual Party Invite System</b></h6>
     </div>
     <br>
-    <!-- <div class="container"> -->
-    <div class="carousel">
-      <div class="carousel-fixed-item middle-indicator">
-        <div class="left">
-          <a href="Previo" class="movePrevCarousel middle-indicator-text content-indicator"><i class="material-icons  middle-indicator-text ">chevron_left</i></a>
-        </div>
-        <div class="right">
-          <a href="Siguiente" class=" moveNextCarousel middle-indicator-text  content-indicator"><i class="material-icons  middle-indicator-text">chevron_right</i></a>
-        </div>
+    <!-- <div class="middle-indicator">
+      <div class="left">
+        <a href="Previo" class="movePrevCarousel middle-indicator-text content-indicatorLeft"><i class="material-icons  middle-indicator-text ">chevron_left</i></a>
       </div>
+      <div class="right">
+        <a href="Siguiente" class=" moveNextCarousel middle-indicator-text  content-indicatorRight"><i class="material-icons  middle-indicator-text">chevron_right</i></a>
+      </div> -->
+    <div class="carousel">
+
       <div class="carousel-item" href="#one!">
-
         <div class="card white z-depth-1">
-
           <div class="card-content black-text">
             <h5 style="font-weight: 900;">Welcome to BIT</h5>
             <div class="">
-              BIT or Binary Invite Tree is a new invite system with a unique twist.
-              Enter your code below and click Let's party to get started.
+              BIT or Binary Invite Tree is a new invite system with a unique twist. Enter your code below and click Let's party to get started.
             </div>
 
             <div class="row">
@@ -91,21 +87,23 @@
         </div>
       </div>
       <div class="carousel-item" href="#two!">
-        <div class="card white z-depth-1">
-          <div class="card-content black-text">
+        <div class="card bread z-depth-1">
+          <div class="card-content white-text">
             <h5 style="font-weight: 900;">Episode 1</h5>
             <h5 style="font-weight: 900;">Let's Get This Bread</h5><br>
-            <img class="responsive-img" src="img/tv.gif"><br> A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is
+            <div class="center"><img class="responsive-img center" src="img/bread2.gif" style="height: 65px;"></div>
+            <br> A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money.
           </div>
         </div>
       </div>
       <div class="carousel-item " href="#three!">
-        <div class="card white z-depth-1">
-          <div class="card-content black-text">
-            <h4 style="font-weight: 900;">Party Stats</h4><br>
+        <div class="card statCard z-depth-1">
+          <div class="card-content white-text">
+            <h4 style="font-weight: 900;" class="">Party Stats</h4><br>
+            <img class="responsive-img" src="img/stat.jpg"><br>
             <h6>Time till next episode:</h6>
-            <b><p id="demo" class="red-text"></p></b>
-            <h6>Spots remaining in tree: <b><span class="red-text">43</span></b></h6><br><br><br>
+            <b><p id="demo" class="whit-text"></p></b>
+            <h6>Spots remaining in tree: <b><span class="white-text">43</span></b></h6>
 
           </div>
         </div>
@@ -113,75 +111,12 @@
     </div>
     <div class="container">
       <div class="col s12 animated fadeInUp delay-1s" id="invite">
-        <div class="card cardRoundedLess white hoverable  z-depth-5 ">
-          <h5 class="black-text" style="font-weight: 900; padding-top: 10px;">&nbsp The Invite List</h5>
+        <div class="card cardRoundedLess pink darken-4 hoverable white-text z-depth-5 ">
+          <div class="center"><h5 style="font-weight: 900; padding-top: 20px;" class="">&nbsp The Invite List</h5></div>
           <div class="chart" id="basic-example" style="height: 500px;"></div>
         </div>
       </div>
     </div>
-    <!-- <div class="container">
-        <div class="col s12 animated fadeInRight delay-1s" style="padding-top: 30%;" id="nameCard">
-          <div class="card white hoverable center z-depth-5 " style="margin-top: -50px;">
-            <div class="card-content black-text">
-              <span class="card-title center heavy-text"><h5 style="font-weight: 900;">What's your name?</h5></span>
-              <div class="row">
-                <form class="col s12">
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input id="name" type="text" class="validate">
-                      <label for="invite_code">Name</label>
-                    </div>
-                  </div>
-              </div>
-              <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 20px;" onclick="addUsertoTree();"><i class="material-icons right">local_bar</i>Confirm Spot</a>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 animated fadeInUp delay-1s" style="padding-top: 30%;" id="inviteOthers">
-          <div class="card white hoverable center z-depth-5" style="margin-top: -50px;">
-            <div class="card-content black-text">
-              <span class="card-title center"><h5><b>Invite your Homies</b></h5></span>
-              <div class="row">
-                <form class="col s12">
-                  <div class="row">
-                    <div id="myCode"></div>
-                    <br><br>
-                    <a class="waves-effect waves-light btn blue darken-4" style="border-radius: 25px;" onclick="iosCopyToClipboard('el')"><i class="material-icons right">content_paste</i>Copy to Clipboard</a>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 animated fadeInUp delay-1s" id="tree">
-          <div class="card white center hoverable z-depth-5" style="margin-top: px;">
-            <div class="card-content black-text">
-              <span class="card-title left heavy-text"><h5><b>The Invite List</b></h5></span>
-              <div class="row">
-              </div>
-            </div>
-          </div>
-        </div>
-  </header>
-
-
-  <section>
-     <div class="container">
-      <div class="col s12 animated fadeInUp delay-1s" style="padding-top: 5%;" id="nameCard">
-        <img class="responsive-img" src="img/tv.gif">
-        <div class="card cardRoundedLess white hoverable  z-depth-5 " style="margin-top: -50px;">
-          <h5 class="black-text" style="font-weight: 900; padding-top: 5px;">&nbsp Episode 1</h5>
-          <h4 class="black-text" style="font-weight: 500;">&nbsp Let's Get this Bread</h4>
-          <div class="card-content black-text">
-            <div class="row">
-              A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money. Nowadays, the term"let's get this bread" is more loosely defined as a sort of battlecry in a sense, calling upon the will of the person(s) to
-              succeed, not necessarily in just gaining monetary funds. It may also be taken more literally as well, as the loaf of bread (or any bread in general) can be a very powerful symbol and source of hype for a crowd.
-            </div>
-          </div>
-        </div>
-      </div><br><br>
-
-  </section> -->
 
     <script src="vendor/raphael.js"></script>
     <script src="vendor/jquery.min.js"></script>
