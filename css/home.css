@@ -6,9 +6,7 @@ html {
   font-family: 'Barlow';
   overflow-x: hidden;
   background-color: #FFF5F1;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
+
 }
 
 .statCard {
