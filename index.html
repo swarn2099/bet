@@ -18,10 +18,11 @@
   <link href="img/apple_splash_750.png" sizes="750x1334" rel="apple-touch-startup-image" />
   <title>Home | BIT</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
   <link rel="stylesheet" href="css/Treant.css">
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/home.css" media="screen,projection" />
+
   <link type="text/css" rel="stylesheet" href="css/animate.css" media="screen,projection" />
   <link type="text/css" rel="stylesheet" href="css/Treant.css" media="screen,projection" />
   <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
@@ -51,99 +52,100 @@
 
 <body>
   <header>
-    <div style="padding-top: 5%; font-weight: 900px;">
-      <h1 class="white-text  center"><b>B I T</b></h1>
-      <h6 class="white-text heavy center"><b>The Visual Party Invite System</b></h6>
-    </div>
-    <br>
-    <!-- <div class="middle-indicator">
-      <div class="left">
-        <a href="Previo" class="movePrevCarousel middle-indicator-text content-indicatorLeft"><i class="material-icons  middle-indicator-text ">chevron_left</i></a>
+    <div style="padding-top: 5%;" class="container">
+      <div class="row" style="margin-top: -10%">
+        <div class="col s6">
+          <h3 class="white-text" style="font-weight: bold;">BIT</h3>
+        </div>
+        <div class="col s6">
+          <h6 class="white-text" style="margin-top: 20%; margin-left: 20%">The Visual Party Invite System</h6>
+        </div>
       </div>
-      <div class="right">
-        <a href="Siguiente" class=" moveNextCarousel middle-indicator-text  content-indicatorRight"><i class="material-icons  middle-indicator-text">chevron_right</i></a>
-      </div> -->
-    <div class="carousel">
+      <hr color="white" style="margin-top: -9%;" />
+      <h5 class="white-text center" style="font-style: italic;font-weight: bold;text-transform: uppercase;">Episode 001</h5>
+      <h3 class="white-text center" style="font-style: normal;font-weight: bold;text-transform: uppercase;">Let's Get this <br>bread</h3>
+      <br>
+      <h6 class="white-text center" style="font-weight: bold;line-height: normal;text-transform: uppercase;">Hosted by: <br>Ultimate Kickback Series</h6>
+      <h4 class="white-text center" style="font-style: normal;font-weight: bold;text-transform: uppercase;">December 1st</h4>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon fill="#FFF5F1" points="0,100 100,0 100,100"/>
+    </svg>
+  </header>
 
-      <div class="carousel-item" href="#one!">
-        <div class="card white z-depth-1">
-          <div class="card-content black-text">
-            <h5 style="font-weight: 900;">Welcome to BIT</h5>
-            <div class="">
-              BIT or Binary Invite Tree is a new invite system with a unique twist. Enter your code below and click Let's party to get started.
-            </div>
 
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="invite_code" class="validate" type="tel" pattern="[0-9]*" novalidate>
-                <label for="invite_code">Enter invite code</label>
+  <section class="container center">
+    <div id="codeCard" style="margin-top: -10%; ">
+      <h5 class="black-text right" style="font-style: normal;font-weight: bold;text-transform: uppercase;">Enter invite code</h5>
+      <input style="background: #FFFFFF;border: 1px solid #B4B4B4;box-sizing: border-box;border-radius: 5px; text-align: center;font-weight: 600;font-size: 24px;text-align: center;text-transform: uppercase;" id="invite_code" type="number" placeholder="YOUR INVITE CODE">
+      <a class="waves-effect waves-light btn" onclick="checkInviteCode()" style="background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(197.5deg, #5BB264 -5.07%, #D700F9 150.07%);border: 1px solid #424242;box-sizing: border-box;box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);border-radius: 5px;font-weight: bold;font-size: 24px; text-align: center; text-transform: uppercase; color: #070707;">Let's Party</a>
+    </div>
+    <div id="nameCard">
+      <h5 class="black-text right" style="font-style: normal;font-weight: bold;text-transform: uppercase;">What's your first name?</h5>
+      <input style="background: #FFFFFF;border: 1px solid #B4B4B4;box-sizing: border-box;border-radius: 5px; text-align: center;font-weight: 600;font-size: 24px;text-align: center;" id="name" class="validate" type="tel" pattern="[0-9]*"
+        novalidate placeholder="YOUR NAME">
+      <a class="waves-effect waves-light btn" onclick="addUser();" style="background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(197.5deg, #5BB264 -5.07%, #D700F9 150.07%);border: 1px solid #424242;box-sizing: border-box;box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);border-radius: 5px;font-weight: bold;font-size: 24px;texttext-align: center;text-transform: uppercase;color: #070707;">Confirm</a>
+    </div>
+    <div id="displayCode">
+      <h5 class="black-text right" style="font-style: normal;font-weight: bold;text-transform: uppercase;">Invite others</h5><br><br>
+      <h5 class="black-text " style="font-style: normal;font-weight: 600;line-height: normal;font-size: 50px;text-align: right;text-transform: uppercase;color: rgba(0, 0, 0, 0.7);" id="codeOutput"></h5><br>
+      <a class="waves-effect waves-light btn right modal-trigger" href="#modal1" style="background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(197.5deg, #5BB264 -5.07%, #D700F9 150.07%);border: 1px solid #424242;box-sizing: border-box;box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);border-radius: 5px;font-weight: bold;font-size: 24px;text-align: center;text-transform: uppercase;color: #070707;">Invite 2 friends</a>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content">
+          <h4><b>Invite your friends</b></h4>
+          <hr color="black" />
+          <h6>Copy the message below and share it with your friends. You can invite 2 friends and your invite code experies in 8 hours.</h6>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <div id="textarea1" class="materialize-textarea">Hey there, you've been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code at this <a href="https://swarn2099.github.io/Bet">link</a> to proceed</div>
+                </div>
               </div>
-            </div>
-            <div class="center">
-              <a class="waves-effect waves-light btn amber darken-4" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">local_bar</i>Let's Party</a>
-            </div>
-            <br><br>
+            </form>
           </div>
         </div>
-      </div>
-      <div class="carousel-item" href="#two!">
-        <div class="card bread z-depth-1">
-          <div class="card-content white-text">
-            <h5 style="font-weight: 900;">Episode 1</h5>
-            <h5 style="font-weight: 900;">Let's Get This Bread</h5><br>
-            <div class="center"><img class="responsive-img center" src="img/bread2.gif" style="height: 65px;"></div>
-            <br> A phrase originally used to mean "let's get money" as bread=dough and dough is a common slang term for money.
-          </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Done</a>
         </div>
       </div>
-      <div class="carousel-item " href="#three!">
-        <div class="card statCard z-depth-1">
-          <div class="card-content white-text">
-            <h4 style="font-weight: 900;" class="">Party Stats</h4><br>
-            <img class="responsive-img" src="img/stat.jpg"><br>
-            <h6>Time till next episode:</h6>
-            <b><p id="demo" class="whit-text"></p></b>
-            <h6>Spots remaining in tree: <b><span class="white-text">43</span></b></h6>
-
-          </div>
-        </div>
-      </div>
+    </div><br><br><br><br>
+    <div class="card treeCard z-depth-5" class="animated fadeInUp delay-1s" id="tree">
+      <div class="card-content white-text">
+        <h4 style="font-weight: 200; margin-top: -2%">The Invite Tree</h4>
+        <hr color="white"/>
+      <div id="basic-example" style="width:auto; height: 160px"></div>
     </div>
-    <div class="container">
-      <div class="col s12 animated fadeInUp delay-1s" id="invite">
-        <div class="card cardRoundedLess treeCard hoverable white-text z-depth-5 ">
-          <div class="center"><h5 style="font-weight: 900; padding-top: 20px;" class="">&nbsp The Invite List</h5></div>
-          <div class="chart" id="basic-example" style="height: 500px;"></div>
-        </div>
-      </div>
     </div>
-
-    <script src="vendor/raphael.js"></script>
-    <script src="vendor/jquery.min.js"></script>
-    <script src="vendor/jquery.easing.js"></script>
-
-    <script src="js/Treant.js"></script>
-
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <span class="card-title center heavy-text"><h5 style="font-weight: 900;">Forgot my Invite Code</h5></span>
-        <hr />
-        <span class="left">Lookup your invite code here to invite your friends. First, enter the code you were invited with below.</span>
+    <div class="card  z-depth-5">
+      <div class="card-content black-text">
+        <h4 style="font-weight: 200; margin-top: -2%">Party Stats and Info</h4>
+        <hr color="black" />
+        <br>
+        <p class="black-text">Welcome to the first episode of Ultimate Kickback Series. We're kicking things off with a 100 person party to ease our way into finals season.</p><br>
         <div class="row">
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="invite_code" class="validate" type="tel" pattern="[0-9]*" novalidate>
-                <label for="invite_code">Invite Code</label>
-              </div>
-            </div>
+          <div class="col s6">
+            <h6>Time till next episode:</h6><b><p id="demo" ></p></b>
+          </div>
+          <div class="col s6">
+            <h6>Spots left in party:</h6><b><p id="spots" ></p></b>
+          </div>
         </div>
-        <a class="waves-effect waves-light btn center cyan" style="border-radius: 25px;" onclick="checkInviteCode();"><i class="material-icons right">arrow_forward</i>Next Step</a><br><br>
       </div>
     </div>
+  </section>
+
+  <script src="vendor/raphael.js"></script>
+  <script src="vendor/jquery.min.js"></script>
+  <script src="vendor/jquery.easing.js"></script>
+
+  <script src="js/Treant.js"></script>
+
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+
+
 </body>
 <script src="js/tree.js"></script>
 <script>
