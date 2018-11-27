@@ -150,7 +150,7 @@ function addUser() {
   docRef.doc(userName.value).set(newUser).then(function() {
     console.log("New user document created in the partyTree collection");
   });
-  setTimeout(function tree(){var arr = [];
+  window.setTimeout(function tree(){var arr = [];
   db.collection("partyTree").orderBy("order").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
       // console.log(doc.id, " => ", doc.data());
