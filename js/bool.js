@@ -16,9 +16,6 @@ var statRef = db.collection("partyStats").doc("Spots");
 $(document).ready(function() {
   // console.log("Welcome to BET, the tree invite system.");
   // console.log("All systems GO ... waiting for user input");
-  $('.enter_link').click(function() {
-       $(this).parent().fadeOut(500);
-});
   $("#nameCard").hide();
   $("#displayCode").hide();
   $("#tree").hide();
@@ -221,7 +218,7 @@ function addUser() {
     new Treant(chart_config);
   });
 
-}, 1000);
+}.bind(this), 1000);
 
   document.getElementById("basicContainer").innerHTML = '<div id="basic-example" style="width:auto; height: 160px"></div>';
 
