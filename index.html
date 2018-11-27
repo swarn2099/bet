@@ -3,9 +3,9 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="BET">
+  <meta name="apple-mobile-web-app-title" content="BET"> -->
   <link rel="apple-touch-icon" href="img/touch-icon-iphone.png">
   <link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad.png">
   <link rel="apple-touch-icon" sizes="180x180" href="img/touch-icon-iphone-retina.png">
@@ -46,7 +46,6 @@
   </script>
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/init.js"></script>
-  <script type="text/javascript" src="js/bool.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
 </head>
 
@@ -116,7 +115,7 @@
       <div class="card-content white-text">
         <h4 style="font-weight: 200; margin-top: -2%">The Invite Tree</h4>
         <hr color="white"/>
-      <div id="basic-example" style="width:auto; height: 160px"></div>
+        <div id="basicContainer"></div>
     </div>
     </div>
     <div class="card  z-depth-5">
@@ -143,14 +142,14 @@
 
   <script src="js/Treant.js"></script>
 
+
   <script type="text/javascript" src="js/materialize.min.js"></script>
 
 
 </body>
 <script src="js/tree.js"></script>
-<script>
-  new Treant(chart_config);
-</script>
+<script type="text/javascript" src="js/bool.js"></script>
+
 
 
 </html>

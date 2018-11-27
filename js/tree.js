@@ -1,3 +1,4 @@
+function tree(){
 var arr = [];
 db.collection("partyTree").orderBy("order").get().then(function(querySnapshot) {
   querySnapshot.forEach(function(doc) {
@@ -64,3 +65,6 @@ var chart_config = {
   }
 };
 console.log(chart_config);
+new Treant(chart_config);
+
+}
