@@ -80,8 +80,7 @@
     </div>
     <div id="nameCard">
       <h5 class="black-text right" style="font-style: normal;font-weight: bold;text-transform: uppercase;">What's your first name?</h5>
-      <input style="background: #FFFFFF;border: 1px solid #B4B4B4;box-sizing: border-box;border-radius: 5px; text-align: center;font-weight: 600;font-size: 24px;text-align: center;" id="name" class="validate" type="text"
-        novalidate placeholder="YOUR NAME">
+      <input style="background: #FFFFFF;border: 1px solid #B4B4B4;box-sizing: border-box;border-radius: 5px; text-align: center;font-weight: 600;font-size: 24px;text-align: center;" id="name" class="validate" type="text" novalidate placeholder="YOUR NAME">
       <a class="waves-effect waves-light btn" onclick="addUser();" style="background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(197.5deg, #5BB264 -5.07%, #D700F9 150.07%);border: 1px solid #424242;box-sizing: border-box;box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);border-radius: 5px;font-weight: bold;font-size: 24px;texttext-align: center;text-transform: uppercase;color: #070707;">Confirm</a>
     </div>
     <div id="displayCode">
@@ -90,34 +89,25 @@
       <a class="waves-effect waves-light btn right modal-trigger" href="#modal1" style="background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(197.5deg, #5BB264 -5.07%, #D700F9 150.07%);border: 1px solid #424242;box-sizing: border-box;box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);border-radius: 5px;font-weight: bold;font-size: 24px;text-align: center;text-transform: uppercase;color: #070707;">Invite 2 friends</a>
 
       <!-- Modal Structure -->
-      <div id="modal1" class="modal bottom-sheet">
+      <div id="modal1" class="modal">
         <div class="modal-content">
           <h4><b>Invite your friends</b></h4>
           <hr color="black" />
-          <h6>Copy the message below and share it with your friends. You can invite 2 friends and your invite code experies in 8 hours.</h6>
-          <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s12">
-
-                  <a href="sms:/* phone number here */&body=Hey there, you've been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code at this <a href="https://swarn2099.github.io/Bet">link</a> to proceed">Link</a>
-
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Done</a>
+          <h6>Text the friends you want to invite by clicking the button below. You can invite 2 friends and your invite code experies in 8 hours.</h6>
+          <a class="waves-effect waves-light btn-large green white-text" href="sms: &body=Hey there, you've been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code at here https://swarn2099.github.io/bet/</a> to proceed">Open Messages</a>
         </div>
       </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Done</a>
+      </div>
+    </div>
     </div><br><br><br><br>
     <div class="card treeCard z-depth-5" class="animated fadeInUp delay-1s" id="tree">
       <div class="card-content white-text">
         <h4 style="font-weight: 200; margin-top: -2%">The Invite Tree</h4>
-        <hr color="white"/>
+        <hr color="white" />
         <div id="basicContainer"></div>
-    </div>
+      </div>
     </div>
     <div class="card  z-depth-5">
       <div class="card-content black-text">
