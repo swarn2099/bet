@@ -5,7 +5,7 @@ parent var is for the prent path to be used in the real time database
 newcode var is to generate the new invite code and convert the number to string
 var party1 = db.collection("eligibleCode").doc("party1");
 var inviteCodeArray, userInputCode, parent, newcode;*/
-var parent, orderGod, currentOrder, spotOutPut;
+var parent, newcode, orderGod, currentOrder, spotOutPut;
 var docRef = db.collection("partyTree");
 var statRef = db.collection("partyStats").doc("Spots");
 /*
@@ -359,13 +359,7 @@ function userLookUp() {
 
           document.getElementById("basicContainer").innerHTML = '<div id="basic-example" style="width:auto; height: 160px"></div>';
           $("#tree").show("slow")
-          M.toast({
-            html: 'Congrats! You have been added to the tree. You have 8 hours starting now to invite 2 friends.',
-            classes: 'teal white-text',
-            style: 'border-radius: 25px;'
-          });
         }
-
       });
     })
     .catch(function(error) {
