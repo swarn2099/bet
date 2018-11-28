@@ -187,9 +187,9 @@ function addUser() {
     var chart_config = {
       chart: {
         container: "#basic-example",
-        levelSeparation: 20,
+        levelSeparation: 10,
         siblingSeparation: 10,
-        // subTeeSeparation: 6,
+        subTeeSeparation: 6,
         nodeAlign: "TOP",
         connectors: {
           style: {
@@ -235,6 +235,8 @@ function addUser() {
     style: 'border-radius: 25px;'
   });
   writeCode(newcode);
+  document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms: &body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code '+ newcode+' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+
 
   return db.runTransaction(function(transaction) {
     // This code may get re-run multiple times if there are conflicts.
@@ -256,6 +258,8 @@ function addUser() {
 function writeCode(newcode){
   // Display the result in the element with id="demo"
   document.getElementById("codeOutput").innerHTML = newcode;
+
+
 }
 //
 // Set the date we're counting down to
