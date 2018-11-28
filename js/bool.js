@@ -68,6 +68,7 @@ function checkInviteCode() {
       if (doc.data().timesUsed < 2) {
         console.log("Code is valid");
         //This guy is the parent so setting parent var to his name
+        parent = doc.data().parent
         currentOrder = doc.data().order;
         orderGod = (2 * currentOrder);
         console.log("Current order: ", currentOrder);
@@ -234,9 +235,8 @@ function addUser() {
     classes: 'teal white-text',
     style: 'border-radius: 25px;'
   });
-  writeCode(newcode);
   document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms: &body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code '+ newcode+' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
-
+  document.getElementById("codeOutput").innerHTML = newcode;
 
   return db.runTransaction(function(transaction) {
     // This code may get re-run multiple times if there are conflicts.
@@ -255,10 +255,31 @@ function addUser() {
 });
 }
 
-function writeCode(newcode){
-  // Display the result in the element with id="demo"
-  document.getElementById("codeOutput").innerHTML = newcode;
+function userLookUp() {
+  var nameLook = document.getElementById('first_name');
+  var parentLook = document.getElementById('invitee');
+  docRef.where("name", "==", nameLook.value )
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            if(doc.data().parent = parentLook.value){
+              $("#codeCard").hide("slow");
+              $("#inviteOthers").show("slow");
+              $("#tree").show("slow")
+              M.toast({
+                html: 'Congrats! You have been added to the tree. You have 8 hours starting now to invite 2 friends.',
+                classes: 'teal white-text',
+                style: 'border-radius: 25px;'
+              });
+            }
 
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
 
 }
 //
