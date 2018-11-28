@@ -8,7 +8,9 @@ html {
   background-color: #FFF5F1;
 
 }
-
+#onBoarding{
+  min-height: 55%;
+}
 .statCard {
   background: #FFF5F1;
   border-color: black;
@@ -29,7 +31,7 @@ html {
 header {
   position: relative;
   z-index: -1;
-  height: 500px;
+  height: 450px;
   /* padding-bottom: 100px; */
   /* border-radius: 0px 0px 488px 488px; */
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), linear-gradient(223.46deg, #00E0FF -4.53%, #D700F9 134.16%);

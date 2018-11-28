@@ -16,26 +16,27 @@ var statRef = db.collection("partyStats").doc("Spots");
 $(document).ready(function() {
   // console.log("Welcome to BET, the tree invite system.");
   // console.log("All systems GO ... waiting for user input");
+
   $("#nameCard").hide();
   $("#displayCode").hide();
   $("#tree").hide();
   // $("#invite").hide();
 
-//Reading Stats
-console.log("reading stats");
-statRef.get().then(function(doc) {
+  //Reading Stats
+  console.log("reading stats");
+  statRef.get().then(function(doc) {
     if (doc.exists) {
-        console.log("Document data:", doc.data());
-         spotOutPut = doc.data().spots;
-         document.getElementById("spots").innerHTML = spotOutPut;
+      console.log("Document data:", doc.data());
+      spotOutPut = doc.data().spots;
+      document.getElementById("spots").innerHTML = spotOutPut;
 
     } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
     }
-}).catch(function(error) {
+  }).catch(function(error) {
     console.log("Error getting document:", error);
-});
+  });
 
 
 });
@@ -67,6 +68,16 @@ function checkInviteCode() {
       // 3a.) If the user was found AND the code has been used less than 3 times
       if (doc.data().timesUsed < 2) {
         console.log("Code is valid");
+        db.collection("partyTree").doc(doc.data().name).update({
+            timesUsed: doc.data().timesUsed + 1
+          })
+          .then(function() {
+            console.log("Document successfully updated!");
+          })
+          .catch(function(error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+          });
         //This guy is the parent so setting parent var to his name
         parent = doc.data().parent
         currentOrder = doc.data().order;
@@ -77,19 +88,19 @@ function checkInviteCode() {
         /* Findng the order of the parent and then assigning orderGod for the newUser. Remeber rule is 2n or 2n+1.
         1.) Look through the entire collection and first check if there is a 2n order value
           => If there is, then set orderGod equal to 2n+1 otherwise its 2n */
-          docRef.where("order", "==", orderGod)
-              .get()
-              .then(function(querySnapshot) {
-                  querySnapshot.forEach(function(doc) {
-                      // doc.data() is never undefined for query doc snapshots
-                      console.log("Looks like someone already has this order, setting orderGod equal to 2n+1");
-                      orderGod = orderGod + 1;
-                      console.log("orderGod is: ", orderGod);
-                  });
-              })
-              .catch(function(error) {
-                  console.log("Error getting documents: ", error);
-              });
+        docRef.where("order", "==", orderGod)
+          .get()
+          .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              // doc.data() is never undefined for query doc snapshots
+              console.log("Looks like someone already has this order, setting orderGod equal to 2n+1");
+              orderGod = orderGod + 1;
+              console.log("orderGod is: ", orderGod);
+            });
+          })
+          .catch(function(error) {
+            console.log("Error getting documents: ", error);
+          });
 
 
         // Hiding the invite card and showing the name card
@@ -123,6 +134,7 @@ function checkInviteCode() {
 
 function addUser() {
   // 1.) Get user name entered in the site
+
   var userName = document.getElementById('name');
   $("#nameCard").hide();
 
@@ -151,75 +163,75 @@ function addUser() {
   docRef.doc(userName.value).set(newUser).then(function() {
     console.log("New user document created in the partyTree collection");
   });
-  window.setTimeout(function tree(){var arr = [];
-  db.collection("partyTree").orderBy("order").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-      // console.log(doc.id, " => ", doc.data());
+  window.setTimeout(function tree() {
+    var arr = [];
+    db.collection("partyTree").orderBy("order").get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        // console.log(doc.id, " => ", doc.data());
         arr.push(doc.data());
-    });
-    console.log("After first push", arr);
-    for (var i = arr.length -1 ; i >0; i--) {
-      for (var j = 0; j < arr.length-1; j++) {
-      if (arr[i].orderToLookFor == arr[j].order) {
-        var pos = j;
+      });
+      console.log("After first push", arr);
+      for (var i = arr.length - 1; i > 0; i--) {
+        for (var j = 0; j < arr.length - 1; j++) {
+          if (arr[i].orderToLookFor == arr[j].order) {
+            var pos = j;
+          }
+        }
+        console.log("Current Person: ", arr[i].name, " => Current order: ", arr[i].order)
+        console.log("Person to look for: ", arr[pos].name, " => Person's order: ", arr[pos].order)
+
+        var textAppend = {
+          text: {
+            name: arr[i].name
+          },
+          children: arr[i].children
+        }
+        var r = arr[pos].children;
+        r.push(textAppend);
       }
-  }
-      console.log("Current Person: ", arr[i].name, " => Current order: ", arr[i].order)
-      console.log("Person to look for: ", arr[pos].name, " => Person's order: ", arr[pos].order)
+      console.log("FINAL ARR AFTER PUSHES");
+      console.log(arr[0]);
 
-      var textAppend = {
-        text: {
-          name: arr[i].name
-        },
-        children: arr[i].children
-      }
-      var r = arr[pos].children;
-      r.push(textAppend);
-    }
-    console.log("FINAL ARR AFTER PUSHES");
-    console.log(arr[0]);
+      var text = arr[0].name;
+      localStorage.setItem('treeF', JSON.stringify(arr[0].children));
+      localStorage.setItem('textF', text);
+      var finalTree = JSON.parse(localStorage.getItem('treeF'));
+      var finalText = localStorage.getItem('textF');
 
-    var text = arr[0].name;
-    localStorage.setItem('treeF', JSON.stringify(arr[0].children));
-    localStorage.setItem('textF', text);
-    var finalTree = JSON.parse(localStorage.getItem('treeF'));
-    var finalText = localStorage.getItem('textF');
+      var chart_config = {
+        chart: {
+          container: "#basic-example",
+          levelSeparation: 10,
+          siblingSeparation: 10,
+          subTeeSeparation: 6,
+          nodeAlign: "TOP",
+          connectors: {
+            style: {
+              stroke: 'white'
 
-    var chart_config = {
-      chart: {
-        container: "#basic-example",
-        levelSeparation: 10,
-        siblingSeparation: 10,
-        subTeeSeparation: 6,
-        nodeAlign: "TOP",
-        connectors: {
-          style: {
-            stroke: 'white'
+            }
+          },
 
+          node: {},
+          animation: {
+            nodeAnimation: "easeOutBounce",
+            nodeSpeed: 700,
+            connectorsAnimation: "bounce",
+            connectorsSpeed: 700
           }
         },
-
-        node: {
-        },
-        animation: {
-          nodeAnimation: "easeOutBounce",
-          nodeSpeed: 700,
-          connectorsAnimation: "bounce",
-          connectorsSpeed: 700
+        nodeStructure: {
+          text: {
+            name: finalText
+          },
+          children: finalTree
         }
-      },
-      nodeStructure: {
-        text: {
-          name: finalText
-        },
-        children: finalTree
-      }
-    };
-    console.log(chart_config);
-    new Treant(chart_config);
-  });
+      };
+      console.log(chart_config);
+      new Treant(chart_config);
+    });
 
-}.bind(this), 1000);
+  }.bind(this), 1000);
 
   document.getElementById("basicContainer").innerHTML = '<div id="basic-example" style="width:auto; height: 160px"></div>';
 
@@ -235,51 +247,128 @@ function addUser() {
     classes: 'teal white-text',
     style: 'border-radius: 25px;'
   });
-  document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms: &body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code '+ newcode +' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+  document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms: &body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + newcode + ' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
   document.getElementById("codeOutput").innerHTML = newcode;
 
   return db.runTransaction(function(transaction) {
     // This code may get re-run multiple times if there are conflicts.
     return transaction.get(statRef).then(function(sfDoc) {
-        if (!sfDoc.exists) {
-            throw "Document does not exist!";
-        }
+      if (!sfDoc.exists) {
+        throw "Document does not exist!";
+      }
 
-        var spotsNew = sfDoc.data().spots - 1;
-        transaction.update(statRef, { spots: spotsNew });
+      var spotsNew = sfDoc.data().spots - 1;
+      transaction.update(statRef, {
+        spots: spotsNew
+      });
     });
-}).then(function() {
+  }).then(function() {
     console.log("Transaction successfully committed!");
-}).catch(function(error) {
+  }).catch(function(error) {
     console.log("Transaction failed: ", error);
-});
+  });
 }
 
 function userLookUp() {
   var nameLook = document.getElementById('first_name');
   var parentLook = document.getElementById('invitee');
-  docRef.where("name", "==", nameLook.value )
+  docRef.where("name", "==", nameLook.value)
     .get()
     .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            if(doc.data().parent = parentLook.value){
-              $("#codeCard").hide("slow");
-              $("#inviteOthers").show("slow");
-              $("#tree").show("slow")
-              M.toast({
-                html: 'Congrats! You have been added to the tree. You have 8 hours starting now to invite 2 friends.',
-                classes: 'teal white-text',
-                style: 'border-radius: 25px;'
-              });
-            }
+      querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        if (doc.data().parent = parentLook.value) {
 
-        });
+          document.getElementById("codeOutput").innerHTML = doc.data().myCode;
+
+          $("#codeCard").hide("slow");
+          $("#displayCode").show("slow");
+          window.setTimeout(function tree() {
+            var arr = [];
+            db.collection("partyTree").orderBy("order").get().then(function(querySnapshot) {
+              querySnapshot.forEach(function(doc) {
+                // console.log(doc.id, " => ", doc.data());
+                arr.push(doc.data());
+              });
+              console.log("After first push", arr);
+              for (var i = arr.length - 1; i > 0; i--) {
+                for (var j = 0; j < arr.length - 1; j++) {
+                  if (arr[i].orderToLookFor == arr[j].order) {
+                    var pos = j;
+                  }
+                }
+                console.log("Current Person: ", arr[i].name, " => Current order: ", arr[i].order)
+                console.log("Person to look for: ", arr[pos].name, " => Person's order: ", arr[pos].order)
+
+                var textAppend = {
+                  text: {
+                    name: arr[i].name
+                  },
+                  children: arr[i].children
+                }
+                var r = arr[pos].children;
+                r.push(textAppend);
+              }
+              console.log("FINAL ARR AFTER PUSHES");
+              console.log(arr[0]);
+
+              var text = arr[0].name;
+              localStorage.setItem('treeF', JSON.stringify(arr[0].children));
+              localStorage.setItem('textF', text);
+              var finalTree = JSON.parse(localStorage.getItem('treeF'));
+              var finalText = localStorage.getItem('textF');
+
+              var chart_config = {
+                chart: {
+                  container: "#basic-example",
+                  levelSeparation: 10,
+                  siblingSeparation: 10,
+                  subTeeSeparation: 6,
+                  nodeAlign: "TOP",
+                  connectors: {
+                    style: {
+                      stroke: 'white'
+
+                    }
+                  },
+
+                  node: {},
+                  animation: {
+                    nodeAnimation: "easeOutBounce",
+                    nodeSpeed: 700,
+                    connectorsAnimation: "bounce",
+                    connectorsSpeed: 700
+                  }
+                },
+                nodeStructure: {
+                  text: {
+                    name: finalText
+                  },
+                  children: finalTree
+                }
+              };
+              console.log(chart_config);
+              new Treant(chart_config);
+            });
+
+          }.bind(this), 1000);
+
+          document.getElementById("basicContainer").innerHTML = '<div id="basic-example" style="width:auto; height: 160px"></div>';
+          $("#tree").show("slow")
+          M.toast({
+            html: 'Congrats! You have been added to the tree. You have 8 hours starting now to invite 2 friends.',
+            classes: 'teal white-text',
+            style: 'border-radius: 25px;'
+          });
+        }
+
+      });
     })
     .catch(function(error) {
-        console.log("Error getting documents: ", error);
+      console.log("Error getting documents: ", error);
     });
+
 
 }
 //

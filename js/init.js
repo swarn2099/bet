@@ -1,6 +1,7 @@
 (function($) {
   $(function() {
     $('.modal').modal();
+    $('#onBoarding').modal('open'); 
     $('.carousel').carousel({
       dist: -40,
       padding: 200

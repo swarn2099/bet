@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover,">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="BET">
@@ -50,14 +50,38 @@
 </head>
 
 <body>
+  <!-- Modal Structure -->
+  <div id="onBoarding" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4><b>Welcome to BIT</b></h4>
+      <hr />
+      <ul class="black-text">
+        <li>
+          <h6><b>BIT is a visual party invite system.</b></h6></li><br>
+        <li>
+          <h6>Enter the code you were sent and you confirm your spot in the party</h6></li>
+        <li>
+          <h6>After your confirm, you will be given a code with which you can invite two friends.</h6></li>
+        <li>
+          <h6>You can view the tree of everyone coming the party once you confirm your spot.</h6></li>
+      </ul>
+      <br>
+      <div class="center"><a style="border-radius: 20px;" class="waves-effect center waves-light btn-large blue white-text modal-close">Let's Go</a></div><br><br>
+
+    </div>
+  </div>
+
   <header>
     <div style="padding-top: 5%;" class="container">
-      <div class="row" style="margin-top: -5%">
+      <!-- <div class="row" style="margin-top: -5%">
         <div class="col s2">
           <h5 class="white-text" style="font-weight: bold;">BIT</h5>
         </div>
-      </div>
-      <h5 class="white-text center" style="font-style: italic;font-weight: bold;text-transform: uppercase;">Episode 001</h5>
+        <div class="col s10">
+          <h6 class="white-text right" style="font-weight: bold; margin-top: 5%;">The Visual Invite System</h6>
+        </div>
+      </div> -->
+      <h5 class="white-text center" style="font-style: italic; font-weight: bold; text-transform: uppercase;">Episode 001</h5>
       <h3 class="white-text center" style="font-style: normal;font-weight: bold;text-transform: uppercase;">Let's Get this <br>bread</h3>
       <br>
       <h6 class="white-text center" style="font-weight: bold;line-height: normal;text-transform: uppercase;">Hosted by: <br>Ultimate Kickback Series</h6>
@@ -75,6 +99,7 @@
       <input style="background: #FFFFFF;border: 1px solid #B4B4B4;box-sizing: border-box;border-radius: 5px; text-align: center;font-weight: 600;font-size: 24px;text-align: center;text-transform: uppercase;" id="invite_code" type="tel" pattern="[0-9]*" placeholder="YOUR INVITE CODE">
       <a class="waves-effect waves-light btn" onclick="checkInviteCode()" style="background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(197.5deg, #5BB264 -5.07%, #D700F9 150.07%);border: 1px solid #424242;box-sizing: border-box;box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);border-radius: 5px;font-weight: bold;font-size: 24px; text-align: center; text-transform: uppercase; color: #070707;">Let's Party</a>
       <br><br><a class="modal-trigger" href="#lookUp"><h6>Returning User</h6></a>
+
       <div id="lookUp" class="modal">
         <div class="modal-content">
           <h4><b>Enter following information</b></h4>
@@ -101,18 +126,23 @@
       <input style="background: #FFFFFF;border: 1px solid #B4B4B4;box-sizing: border-box;border-radius: 5px; text-align: center;font-weight: 600;font-size: 24px;text-align: center;" id="name" class="validate" type="text" novalidate placeholder="YOUR NAME">
       <a class="waves-effect waves-light btn" onclick="addUser();" style="background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(197.5deg, #5BB264 -5.07%, #D700F9 150.07%);border: 1px solid #424242;box-sizing: border-box;box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);border-radius: 5px;font-weight: bold;font-size: 24px;texttext-align: center;text-transform: uppercase;color: #070707;">Confirm</a>
     </div>
-    <div id="displayCode">
+    <div id="displayCode" style="margin-top:-5%;">
       <h5 class="black-text right" style="font-style: normal;font-weight: bold;text-transform: uppercase;">Invite friends</h5><br><br>
-      <h5 class="black-text " style="font-style: normal;font-weight: 600;line-height: normal;font-size: 50px;text-align: right;text-transform: uppercase;color: rgba(0, 0, 0, 0.7);" id="codeOutput"></h5><br>
+      <div class="row">
+        <div class="col s4">
+          <p class="black-text right" style="font-weight: bold;">Northside 1.123 <br>10 p.m. till Dawn</p><br><br>
+        </div>
+        <div class="col s8">
+          <h5 class="black-text " style="font-style: normal;font-weight: 600;line-height: normal;font-size: 50px;text-align: right;text-transform: uppercase;color: rgba(0, 0, 0, 0.7);" id="codeOutput"></h5></div>
+      </div><br>
       <a class="waves-effect waves-light btn right modal-trigger" href="#modal1" style="background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(197.5deg, #5BB264 -5.07%, #D700F9 150.07%);border: 1px solid #424242;box-sizing: border-box;box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);border-radius: 5px;font-weight: bold;font-size: 24px;text-align: center;text-transform: uppercase;color: #070707;">Invite 2 friends</a>
       <br><br>
-      <h6 class="black-text right" style="font-style: normal;font-weight: bold;">Northside 1.123 <br>10 p.m. till Dawn</h6><br><br>
       <!-- Modal Structure -->
       <div id="modal1" class="modal">
         <div class="modal-content">
           <h4><b>Invite your friends</b></h4>
           <hr color="black" />
-          <h6><b>Text the friends you want to invite by clicking the button below. You can invite 2 friends and your invite code experies in 8 hours.</b></h6>
+          <h6>Text the friends you want to invite by clicking the button below. You can invite 2 friends and your invite code experies in 8 hours.</h6><br>
           <div id="share"></div>
         </div>
         <div class="modal-footer">
