@@ -81,7 +81,7 @@ function checkInviteCode() {
         //This guy is the parent so setting parent var to his name
         parent = doc.data().parent
         currentOrder = doc.data().order;
-        orderGod = (2 * currentOrder);
+        orderGod = (2 * currentOrder) + 1;
         console.log("Current order: ", currentOrder);
         console.log("2n order: ", orderGod);
 
@@ -272,6 +272,7 @@ function addUser() {
 function userLookUp() {
   var nameLook = document.getElementById('first_name');
   var parentLook = document.getElementById('invitee');
+
   docRef.where("name", "==", nameLook.value)
     .get()
     .then(function(querySnapshot) {
@@ -284,6 +285,8 @@ function userLookUp() {
 
           $("#codeCard").hide("slow");
           $("#displayCode").show("slow");
+          document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms: &body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + newcode + ' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+
           window.setTimeout(function tree() {
             var arr = [];
             db.collection("partyTree").orderBy("order").get().then(function(querySnapshot) {
