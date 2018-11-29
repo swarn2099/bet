@@ -81,7 +81,7 @@ function checkInviteCode() {
         //This guy is the parent so setting parent var to his name
         parent = doc.data().parent
         currentOrder = doc.data().order;
-        orderGod = (2 * currentOrder) + 1;
+        orderGod = (3 * currentOrder) + 1;
         console.log("Current order: ", currentOrder);
         console.log("2n order: ", orderGod);
 
