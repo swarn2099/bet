@@ -81,9 +81,9 @@ function checkInviteCode() {
         //This guy is the parent so setting parent var to his name
         parent = doc.data().parent
         currentOrder = doc.data().order;
-        orderGod = (3 * currentOrder) + 1;
+        orderGod = (4 * currentOrder) ;
         console.log("Current order: ", currentOrder);
-        console.log("2n order: ", orderGod);
+        console.log("4n order: ", orderGod);
 
         /* Findng the order of the parent and then assigning orderGod for the newUser. Remeber rule is 2n or 2n+1.
         1.) Look through the entire collection and first check if there is a 2n order value
