@@ -247,7 +247,17 @@ function addUser() {
     classes: 'teal white-text',
     style: 'border-radius: 25px;'
   });
-  document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms:&body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code '+ newcode +' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if (/android/i.test(userAgent)) {
+    document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms:?body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + doc.data().myCode + ' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+  }
+
+  // iOS detection from: http://stackoverflow.com/a/9039885/177710
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms:&body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + doc.data().myCode + ' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+
+  }
   document.getElementById("codeOutput").innerHTML = newcode;
 
   return db.runTransaction(function(transaction) {
@@ -285,7 +295,17 @@ function userLookUp() {
 
           $("#codeCard").hide("slow");
           $("#displayCode").show("slow");
-          document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms: &body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + doc.data().myCode + ' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+          var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+          if (/android/i.test(userAgent)) {
+            document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms:?body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + doc.data().myCode + ' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+          }
+
+          // iOS detection from: http://stackoverflow.com/a/9039885/177710
+          if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms:&body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + doc.data().myCode + ' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+
+          }
 
           window.setTimeout(function tree() {
             var arr = [];
