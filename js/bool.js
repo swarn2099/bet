@@ -140,7 +140,7 @@ function addUser() {
 
   $("#displayCode").show();
 
-  // $("#tree").show();
+  $("#tree").show();
 
 
   // 2.) Generate new code and convert to string
@@ -267,7 +267,7 @@ function addUser() {
         throw "Document does not exist!";
       }
 
-      var spotsNew = sfDoc.data().spots - 1;
+      var spotsNew = sfDoc.data().spots + 1;
       transaction.update(statRef, {
         spots: spotsNew
       });
@@ -378,7 +378,7 @@ function userLookUp() {
           }.bind(this), 1000);
 
           document.getElementById("basicContainer").innerHTML = '<div id="basic-example" style="width:auto; height: 160px"></div>';
-          // $("#tree").show("slow")
+          $("#tree").show("slow")
         }
       });
     })
