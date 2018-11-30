@@ -236,12 +236,10 @@ function addUser() {
   document.getElementById("basicContainer").innerHTML = '<div id="basic-example" style="width:auto; height: 160px"></div>';
 
 
-
-
   // 8.) Hide name card and show inviteOthers and tree card
   $("#nameCard").hide("slow");
   $("#inviteOthers").show("slow");
-  $("#tree").show("slow")
+  // $("#tree").show("slow")
   M.toast({
     html: 'Congrats! You have been added to the tree. You have 8 hours starting now to invite 2 friends.',
     classes: 'teal white-text',
@@ -298,12 +296,12 @@ function userLookUp() {
           var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
           if (/android/i.test(userAgent)) {
-            document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms:?body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + doc.data().myCode + ' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+            document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms:?body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + doc.data().myCode + ' at here www.nominal.space to proceed">Open Messages</a><br>';
           }
 
           // iOS detection from: http://stackoverflow.com/a/9039885/177710
           if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms:&body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + doc.data().myCode + ' at here https://swarn2099.github.io/bet to proceed">Open Messages</a><br>';
+            document.getElementById("share").innerHTML = '<a style="border-radius: 20px;" class="waves-effect waves-light btn green white-text" href="sms:&body=Hey there, you have been invited to a party through BIT! You have 8 hours to accept your invitation. Enter the following code ' + doc.data().myCode + ' at here www.nominal.space to proceed">Open Messages</a><br>';
 
           }
 
